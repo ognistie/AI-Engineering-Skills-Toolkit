@@ -1,0 +1,3 @@
+interface:
+  display_name: "Skill Orchestrator"
+  short_description: "Route by requested outcome and authorized mode."

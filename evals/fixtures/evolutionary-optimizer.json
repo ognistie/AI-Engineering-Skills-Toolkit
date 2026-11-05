@@ -1,0 +1,51 @@
+{
+  "split": "development",
+  "seeds": [
+    "a",
+    "b"
+  ],
+  "objectives": {
+    "latency": {
+      "direction": "min"
+    },
+    "quality": {
+      "direction": "max"
+    },
+    "memory": {
+      "direction": "min",
+      "hard_limit": 100
+    }
+  },
+  "variants": [
+    {
+      "id": "fast",
+      "trials": {
+        "a": {
+          "latency": 4,
+          "quality": 0.9,
+          "memory": 90
+        },
+        "b": {
+          "latency": 4,
+          "quality": 0.9,
+          "memory": 110
+        }
+      }
+    },
+    {
+      "id": "baseline",
+      "trials": {
+        "a": {
+          "latency": 10,
+          "quality": 0.8,
+          "memory": 90
+        },
+        "b": {
+          "latency": 10,
+          "quality": 0.8,
+          "memory": 90
+        }
+      }
+    }
+  ]
+}

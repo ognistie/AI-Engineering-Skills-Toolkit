@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "skills": {
+    "skill-orchestrator": {
+      "group": "routing",
+      "capabilities": [
+        "route_skills"
+      ],
+      "outcome": "Choose a minimal skill composition",
+      "cost": 1,
+      "risk": "low",
+      "optional_tools": [],
+      "prerequisites": [],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "research-orchestrator": {
+      "group": "essential",
+      "capabilities": [
+        "synthesize_evidence",
+        "plan_investigation"
+      ],
+      "outcome": "Resolve a decision using primary evidence",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [
+        "network"
+      ],
+      "prerequisites": [
+        "question"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "process-verifier": {
+      "group": "essential",
+      "capabilities": [
+        "verify_acceptance",
+        "design_acceptance_gates"
+      ],
+      "outcome": "Verify independent evidence against fixed gates",
+      "cost": 1,
+      "risk": "low",
+      "optional_tools": [
+        "test_runner"
+      ],
+      "prerequisites": [
+        "acceptance_contract",
+        "observations"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "trajectory-analyzer": {
+      "group": "essential",
+      "capabilities": [
+        "diagnose_trace",
+        "design_trace_replay"
+      ],
+      "outcome": "Reconstruct an observed run and isolate divergence",
+      "cost": 2,
+      "risk": "low",
+      "optional_tools": [],
+      "prerequisites": [
+        "trace"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "experiment-evaluator": {
+      "group": "essential",
+      "capabilities": [
+        "compare_trials",
+        "design_experiment"
+      ],
+      "outcome": "Compare variants under a frozen protocol",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "protocol",
+        "paired_trials"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "adaptive-reasoning": {
+      "group": "autonomy",
+      "capabilities": [
+        "allocate_attempts",
+        "design_stopping_rule"
+      ],
+      "outcome": "Allocate external attempts and budgets",
+      "cost": 2,
+      "risk": "low",
+      "optional_tools": [],
+      "prerequisites": [
+        "budget",
+        "evidence"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "long-horizon-executor": {
+      "group": "autonomy",
+      "capabilities": [
+        "resume_workflow",
+        "design_checkpoints"
+      ],
+      "outcome": "Resume verified milestones and reconcile incomplete effects",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "checkpoint_store"
+      ],
+      "prerequisites": [
+        "checkpoint"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "multi-agent-router": {
+      "group": "autonomy",
+      "capabilities": [
+        "schedule_agent_work",
+        "plan_agent_topology"
+      ],
+      "outcome": "Select a safe and beneficial topology",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "subagents"
+      ],
+      "prerequisites": [
+        "task_graph"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "runtime-guardian": {
+      "group": "autonomy",
+      "capabilities": [
+        "simulate_action_policy",
+        "design_action_policy"
+      ],
+      "outcome": "Check an external authorization boundary",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "policy",
+        "action"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "evolutionary-optimizer": {
+      "group": "advanced",
+      "capabilities": [
+        "rank_variants",
+        "design_variant_search"
+      ],
+      "outcome": "Select feasible nondominated variants",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [
+        "isolated_runner"
+      ],
+      "prerequisites": [
+        "development_trials"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "hypothesis-lab": {
+      "group": "advanced",
+      "capabilities": [
+        "rank_hypotheses",
+        "design_discriminating_test"
+      ],
+      "outcome": "Distinguish mechanisms with independent evidence",
+      "cost": 2,
+      "risk": "low",
+      "optional_tools": [],
+      "prerequisites": [
+        "hypotheses",
+        "evidence"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "mechanistic-interpretability": {
+      "group": "advanced",
+      "capabilities": [
+        "analyze_activation_patch",
+        "design_activation_intervention"
+      ],
+      "outcome": "Compare neural interventions and controls",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "patch_measurements"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "agentic-rl-lab": {
+      "group": "advanced",
+      "capabilities": [
+        "score_rl_rollouts",
+        "design_rl_environment"
+      ],
+      "outcome": "Specify environments and score trusted rollouts",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [
+        "trainer"
+      ],
+      "prerequisites": [
+        "rollouts"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    }
+  }
+}

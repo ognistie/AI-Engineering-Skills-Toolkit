@@ -1,0 +1,30 @@
+{
+  "policy": {
+    "revision": "p1",
+    "tools": {
+      "publish": {
+        "effect": "external",
+        "principals": [
+          "operator"
+        ],
+        "resources": [
+          "artifact/A"
+        ],
+        "approval_required": true
+      }
+    },
+    "max_timeout_ms": 1000
+  },
+  "action": {
+    "request_id": "q5",
+    "principal": "operator",
+    "tool": "publish",
+    "resource": "artifact/A",
+    "payload_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "units": 1,
+    "timeout_ms": 500
+  },
+  "now": 10,
+  "remaining_units": 2,
+  "read_only": false
+}

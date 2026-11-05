@@ -1,0 +1,3 @@
+interface:
+  display_name: "Trajectory Analyzer"
+  short_description: "Find where a recorded workflow diverged and what evidence would isolate the cause."

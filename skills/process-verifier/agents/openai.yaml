@@ -1,0 +1,3 @@
+interface:
+  display_name: "Process Verifier"
+  short_description: "Decide whether a workflow met fixed acceptance gates."

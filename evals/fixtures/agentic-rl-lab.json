@@ -1,0 +1,41 @@
+{
+  "environment": {
+    "allowed_actions": [
+      "search",
+      "finish"
+    ],
+    "step_limit": 3,
+    "gamma": 0.5,
+    "cost_weight": 0.1,
+    "terminal_reward": {
+      "success": 1,
+      "failure": 0,
+      "timeout": 0,
+      "unsafe": -1
+    }
+  },
+  "episodes": [
+    {
+      "id": "ep1",
+      "initial_state": "s0",
+      "steps": [
+        {
+          "id": "t1",
+          "state": "s0",
+          "action": "search",
+          "next_state": "s1",
+          "outcome": "continue",
+          "cost": 1
+        },
+        {
+          "id": "t2",
+          "state": "s1",
+          "action": "finish",
+          "next_state": "done",
+          "outcome": "success",
+          "cost": 0
+        }
+      ]
+    }
+  ]
+}

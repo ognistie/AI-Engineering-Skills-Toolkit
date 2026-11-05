@@ -1,0 +1,46 @@
+{
+  "max_agents": 2,
+  "overhead_ms": 50,
+  "min_gain_ms": 100,
+  "host_parallel": true,
+  "delegation_authorized": true,
+  "tasks": [
+    {
+      "id": "server",
+      "depends_on": [],
+      "reads": [
+        "baseline"
+      ],
+      "writes": [
+        "server-report"
+      ],
+      "ms": 900
+    },
+    {
+      "id": "client",
+      "depends_on": [],
+      "reads": [
+        "baseline"
+      ],
+      "writes": [
+        "client-report"
+      ],
+      "ms": 750
+    },
+    {
+      "id": "merge",
+      "depends_on": [
+        "server",
+        "client"
+      ],
+      "reads": [
+        "server-report",
+        "client-report"
+      ],
+      "writes": [
+        "report"
+      ],
+      "ms": 200
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "null_hypothesis": "null",
+  "hypotheses": [
+    {
+      "id": "null",
+      "prediction": "No difference by cache state",
+      "falsifier": "Repeatable difference under a controlled cache intervention"
+    },
+    {
+      "id": "cache",
+      "prediction": "Cold cache adds requests",
+      "falsifier": "Same request count after changing cache state alone"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "group": "run7",
+      "hypothesis": "cache",
+      "kind": "observation",
+      "direction": "supports"
+    },
+    {
+      "id": "e2",
+      "group": "run7",
+      "hypothesis": "cache",
+      "kind": "observation",
+      "direction": "supports"
+    }
+  ]
+}

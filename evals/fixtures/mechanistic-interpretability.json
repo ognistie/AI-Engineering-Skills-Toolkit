@@ -1,0 +1,12 @@
+{
+  "min_baseline_gap": 0.2,
+  "pairs": [
+    {
+      "id": "p1",
+      "clean": 2,
+      "corrupt": 0,
+      "patched": 1.2,
+      "control": 0.2
+    }
+  ]
+}

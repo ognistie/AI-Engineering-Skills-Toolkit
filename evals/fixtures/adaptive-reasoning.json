@@ -1,0 +1,20 @@
+{
+  "evidence": "disagreement",
+  "limit": {
+    "attempts": 3,
+    "ms": 800,
+    "cost_units": 12
+  },
+  "spent": {
+    "attempts": 1,
+    "ms": 200,
+    "cost_units": 4
+  },
+  "next_cost": {
+    "attempts": 1,
+    "ms": 100,
+    "cost_units": 2
+  },
+  "authorized": true,
+  "next_observation": "Query the migration ledger"
+}

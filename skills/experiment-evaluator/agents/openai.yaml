@@ -1,0 +1,3 @@
+interface:
+  display_name: "Experiment Evaluator"
+  short_description: "Compare alternatives under a frozen protocol and report uncertainty."

@@ -1,0 +1,13 @@
+{
+  "run_id": "run-9",
+  "steps": [
+    {
+      "id": "payment",
+      "max_attempts": 2
+    },
+    {
+      "id": "receipt",
+      "max_attempts": 1
+    }
+  ]
+}
