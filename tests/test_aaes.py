@@ -114,6 +114,8 @@ class OutcomeTests(unittest.TestCase):
 
 
 class InstallerTests(unittest.TestCase):
+    # macOS may return temp paths below /var, a symlink to /private/var.
+    # The installer intentionally requires a canonical destination.
     def cli(self, *args, expected=0):
         result = subprocess.run([sys.executable, str(ROOT / "scripts/manage.py"), *map(str, args)],
                                 capture_output=True, text=True, timeout=15)
@@ -122,8 +124,8 @@ class InstallerTests(unittest.TestCase):
 
     def test_install_verify_update_and_recoverable_removal(self):
         with tempfile.TemporaryDirectory() as temp:
-            dest = Path(temp) / "skills"
-            state = Path(temp) / ".skills.aaes-state"
+            dest = Path(temp).resolve() / "skills"
+            state = Path(temp).resolve() / ".skills.aaes-state"
             options = ("--destination", dest, "--skill", T)
             self.cli("install", *options)
             self.cli("verify", *options)
@@ -137,7 +139,7 @@ class InstallerTests(unittest.TestCase):
 
     def test_group_preflight_refuses_foreign_skill_and_keeps_local_modifications(self):
         with tempfile.TemporaryDirectory() as temp:
-            dest = Path(temp) / "skills"
+            dest = Path(temp).resolve() / "skills"
             foreign = dest / T
             foreign.mkdir(parents=True)
             (foreign / "SKILL.md").write_text("foreign", encoding="utf-8")
@@ -152,9 +154,9 @@ class InstallerTests(unittest.TestCase):
 
     def test_export_self_contained_no_overwrite(self):
         with tempfile.TemporaryDirectory() as temp:
-            options = ("--destination", temp, "--skill", "skill-orchestrator")
+            options = ("--destination", Path(temp).resolve(), "--skill", "skill-orchestrator")
             self.cli("export", *options)
-            path = Path(temp) / "skill-orchestrator.zip"
+            path = Path(temp).resolve() / "skill-orchestrator.zip"
             with ZipFile(path) as archive:
                 self.assertIsNone(archive.testzip())
                 members = archive.namelist()

@@ -10,3 +10,5 @@
 ## Executor integration
 
 Runtime Guardian's local SQLite reservation is a reference for trusted code. Keep the DB, clock, policy, principal and approvals outside the agent's control; recompute the action digest before the reservation. Dispatch only from the credentialed wrapper, bound to the immutable arguments and timeout. A committed reservation without a receipt is an uncertain operation and must be reconciled. SQLite is not a distributed transaction or an OS sandbox.
+
+Se a plataforma apresentar um alias de sistema, como `/var` para `/private/var` no macOS, escolha explicitamente o caminho canônico confiável como destino. O instalador continua recusando links no destino e nas pastas das skills.
