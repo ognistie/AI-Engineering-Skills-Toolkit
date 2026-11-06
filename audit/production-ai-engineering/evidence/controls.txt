@@ -1,0 +1,71 @@
+{
+  "type": "synthetic_controls",
+  "verifier": {
+    "controls": 6,
+    "false_passes": 0,
+    "false_rejections": 0
+  },
+  "adaptive": {
+    "fixed": {
+      "success": 12,
+      "attempts": 24,
+      "modeled_ms": 360,
+      "cost_units": 24
+    },
+    "adaptive": {
+      "success": 12,
+      "attempts": 16,
+      "modeled_ms": 280,
+      "cost_units": 16
+    }
+  },
+  "topology": {
+    "serial_batches": [
+      [
+        "client"
+      ],
+      [
+        "server"
+      ],
+      [
+        "merge"
+      ]
+    ],
+    "parallel_batches": [
+      [
+        "client",
+        "server"
+      ],
+      [
+        "merge"
+      ]
+    ],
+    "modeled_serial_ms": 1850,
+    "modeled_parallel_ms": 1150
+  },
+  "variant_search": {
+    "development_frontier": {
+      "binary": {
+        "correct": 32.0,
+        "item_reads": 238.33333333333334
+      }
+    },
+    "frozen_candidate": "binary",
+    "holdout_seed": 991,
+    "holdout": {
+      "linear": {
+        "correct": 32,
+        "item_reads": 5928
+      },
+      "binary": {
+        "correct": 32,
+        "item_reads": 236
+      }
+    }
+  },
+  "activation_patch": {
+    "patch_restoration": 1.0,
+    "control_restoration": 0.0,
+    "patch_minus_control": 1.0
+  }
+}

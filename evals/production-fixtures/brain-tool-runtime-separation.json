@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "trusted_permissions": {
+    "read": [
+      "case/1"
+    ]
+  },
+  "plan": [
+    {
+      "id": "a1",
+      "tool": "read",
+      "resource": "case/1"
+    }
+  ]
+}

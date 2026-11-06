@@ -1,0 +1,5 @@
+# Arquitetura de inferência
+
+O estimador usa KV convencional por GPU: 2 × camadas × cabeças KV por shard × dimensão × bytes. I01 fixa 8 camadas, 4 cabeças KV divididas em 2 shards, dimensão 64 e 2 bytes: **4.096 bytes por token/GPU**. 65 tokens arredondam para 80 no bloco de 16; com 1.300.000 bytes disponíveis cabem 3 sequências modeladas, não as 4 solicitadas. `measured=false` confirma que não houve GPU.
+
+[NVIDIA Dynamo](https://docs.nvidia.com/dynamo/latest/knowledge-base/overview) documenta roteamento KV e separação prefill/decode; [vLLM](https://docs.vllm.ai/en/latest/features/disagg_prefill/) e [SGLang](https://docs.sglang.io/advanced_features/pd_disaggregation.html) têm implementações com pressupostos próprios. O helper não emula agendamento, não cobre MLA, layouts KV híbridos, fragmentação real ou controle de capacidade. Topologias co-localizada e separada devem ser comparadas sob chegadas, comprimentos e taxa de oferta iguais. Registre TTFT, tempo por token, vazão, goodput no SLO, evicções, utilização e custos de transferência. Use GPU autorizada. Nenhuma otimização de throughput foi demonstrada.

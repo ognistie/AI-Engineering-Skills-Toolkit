@@ -339,6 +339,399 @@
         "plan",
         "analyze"
       ]
+    },
+    "agent-first-harness": {
+      "group": "harness",
+      "capabilities": [
+        "audit_agent_harness",
+        "design_agent_harness"
+      ],
+      "outcome": "Audit repository readiness for coding agents: discover build and test entrypoints, feedback, observability and worktree isolation",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "test_runner"
+      ],
+      "prerequisites": [
+        "repository_manifest"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "agent-computer-interface": {
+      "group": "harness",
+      "capabilities": [
+        "lint_tool_contract",
+        "design_tool_contract"
+      ],
+      "outcome": "Lint individual agent tool contracts, parameter schemas and actionable errors",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "test_runner"
+      ],
+      "prerequisites": [
+        "tool_contract"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "repository-context-architecture": {
+      "group": "harness",
+      "capabilities": [
+        "audit_repository_context",
+        "design_repository_context"
+      ],
+      "outcome": "Map canonical repository documentation and detect broken internal links, duplicate content and stale revision markers",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "test_runner"
+      ],
+      "prerequisites": [
+        "document_map"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "kv-cache-aware-context": {
+      "group": "inference",
+      "capabilities": [
+        "analyze_context_prefix",
+        "design_cache_experiment"
+      ],
+      "outcome": "Compare serialized context prefixes and provider cache telemetry",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "request_pair"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "context-compaction-recovery": {
+      "group": "inference",
+      "capabilities": [
+        "verify_context_restore",
+        "design_context_checkpoint"
+      ],
+      "outcome": "Validate restorable context checkpoints with decisions, constraints, evidence and artifact digests",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "context_checkpoint"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "inference-serving-architect": {
+      "group": "inference",
+      "capabilities": [
+        "estimate_inference_capacity",
+        "design_inference_topology"
+      ],
+      "outcome": "Estimate self-hosted LLM serving memory and design comparable prefill/decode experiments",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "serving_config"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "agent-evals-engineer": {
+      "group": "quality",
+      "capabilities": [
+        "score_agent_trials",
+        "design_agent_evaluation"
+      ],
+      "outcome": "Build and score structured agent trials against independent end states; export human review and import model grader observations",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "isolated_runner"
+      ],
+      "prerequisites": [
+        "trial_records"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "trajectory-review-engine": {
+      "group": "quality",
+      "capabilities": [
+        "review_trajectory_patterns",
+        "design_trajectory_replay"
+      ],
+      "outcome": "Review chronological agent events for invalid calls, stalled loops and disagreement with authoritative outcomes",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "isolated_runner"
+      ],
+      "prerequisites": [
+        "structured_trace"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "evaluator-optimizer-loop": {
+      "group": "quality",
+      "capabilities": [
+        "decide_refinement_loop",
+        "design_refinement_loop"
+      ],
+      "outcome": "Control iterative revision of one artifact with a frozen rubric, independent verifier, bounded cost and stopping criteria",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "isolated_runner"
+      ],
+      "prerequisites": [
+        "iteration_history"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "durable-execution-engine": {
+      "group": "runtime",
+      "capabilities": [
+        "plan_durable_recovery",
+        "design_durable_runtime"
+      ],
+      "outcome": "Choose bounded retry, reconciliation and compensation from a persisted execution snapshot",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "checkpoint_store"
+      ],
+      "prerequisites": [
+        "journal_snapshot"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "brain-tool-runtime-separation": {
+      "group": "runtime",
+      "capabilities": [
+        "validate_execution_plan",
+        "design_model_executor_boundary"
+      ],
+      "outcome": "Validate typed model proposals against a trusted executor and run a fake-tool demonstration",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "checkpoint_store"
+      ],
+      "prerequisites": [
+        "action_plan"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "agent-tool-interface-design": {
+      "group": "runtime",
+      "capabilities": [
+        "rank_tool_catalog",
+        "design_tool_discovery"
+      ],
+      "outcome": "Design discovery, exposure budgets and composition for large agent tool catalogs",
+      "cost": 2,
+      "risk": "moderate",
+      "optional_tools": [
+        "checkpoint_store"
+      ],
+      "prerequisites": [
+        "tool_catalog"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "capability-security-architect": {
+      "group": "security",
+      "capabilities": [
+        "check_capability_delegation",
+        "design_capability_policy"
+      ],
+      "outcome": "Check exact capability attenuation and proposed access before issuance",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "capability_policy"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "prompt-injection-boundaries": {
+      "group": "security",
+      "capabilities": [
+        "check_information_flow",
+        "design_injection_boundaries"
+      ],
+      "outcome": "Enforce a demonstration trust boundary for labeled external data and privileged sinks",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "flow_policy"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
+    },
+    "runtime-verification-engine": {
+      "group": "security",
+      "capabilities": [
+        "verify_runtime_transitions",
+        "design_runtime_monitor"
+      ],
+      "outcome": "Evaluate deterministic runtime state transitions, sequence IDs and budget invariants before an action advances",
+      "cost": 3,
+      "risk": "moderate",
+      "optional_tools": [],
+      "prerequisites": [
+        "runtime_event_stream"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "compatibility": [
+        "codex",
+        "claude",
+        "generic"
+      ],
+      "modes": [
+        "plan",
+        "analyze"
+      ]
     }
   }
 }

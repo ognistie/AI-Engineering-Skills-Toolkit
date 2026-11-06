@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "journal": {
+    "state": {
+      "phase": "in_flight",
+      "attempts": 1,
+      "operation": "p7",
+      "active_claim_id": "c3"
+    }
+  },
+  "max_attempts": 2,
+  "elapsed_ms": 220,
+  "deadline_ms": 200,
+  "base_delay_ms": 10,
+  "max_delay_ms": 100
+}

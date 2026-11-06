@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "initial_state": "queued",
+  "budget": 2,
+  "transitions": {
+    "queued": {
+      "approve": "approved"
+    },
+    "approved": {
+      "publish": "published"
+    }
+  },
+  "events": [
+    {
+      "id": "a",
+      "seq": 1,
+      "action": "approve",
+      "units": 1
+    },
+    {
+      "id": "p",
+      "seq": 2,
+      "action": "publish",
+      "units": 1
+    }
+  ]
+}

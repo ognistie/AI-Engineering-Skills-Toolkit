@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "layers": 32,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "kv_dtype_bytes": 2,
+  "tokens": 17,
+  "concurrent_sequences": 4,
+  "block_tokens": 16,
+  "kv_shards": 2,
+  "gpu_bytes": 9000000,
+  "weights_bytes_per_gpu": 1000000,
+  "reserve_bytes_per_gpu": 1000000,
+  "transfer_bytes_per_second": 1000000000
+}

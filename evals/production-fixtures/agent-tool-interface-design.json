@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "intent": "read_case",
+  "allowed": [
+    "case.read"
+  ],
+  "max_tools": 1,
+  "max_bytes": 100,
+  "catalog": [
+    {
+      "id": "case.read",
+      "intents": [
+        "read_case"
+      ],
+      "schema": {
+        "type": "object"
+      }
+    },
+    {
+      "id": "case.export",
+      "intents": [
+        "read_case"
+      ],
+      "schema": {
+        "type": "object"
+      }
+    }
+  ]
+}

@@ -13,7 +13,7 @@ The host interprets the original task. Use `catalog.json` to map distinct delive
 - Rank requested outcome before secondary work. Within a capability prefer available evidence, lower estimated cost, then lower risk. Check dependencies as a complete closure before accepting any selection. Return conflicts, unavailable skills, and budget limits explicitly.
 - For each recommendation report the task evidence for its capability, and which tests or observations are required. Suggest parallelism only if the host permits it and the tasks are independent; never dispatch in recommendation mode.
 
-In execute mode, a recommendation that falls back to planning because prerequisites are missing does not authorize dispatch. Report the missing inputs and offer a plan. The read-only mode excludes test runners, checkpoints, isolated variant runners, and training; offline or no-delegation mode excludes subagents. External tools still require independent executor authorization.
+In execute and explicit modes, a planning selection never signals dispatch, including when prerequisites are missing. The selection can still be loaded to draft a plan. Report missing inputs and offer that plan. Read-only mode excludes test runners, checkpoints, isolated variant runners, and training; offline or no-delegation mode excludes subagents. External tools still require independent executor authorization.
 
 ### Evidence for routing
 

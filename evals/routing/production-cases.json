@@ -1,0 +1,801 @@
+[
+  {
+    "id": "prod-1",
+    "locale": "pt",
+    "prompt": "Audite se este repo tem instruções, comandos de build/teste e feedback utilizáveis por um agente.",
+    "classification": {
+      "primary": "audit_agent_harness",
+      "inputs": [
+        "repository_manifest"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "test_runner"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-first-harness"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-2",
+    "locale": "en",
+    "prompt": "Plan isolated build feedback and a navigable AGENTS.md for this repository.",
+    "classification": {
+      "primary": "design_agent_harness",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-first-harness"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-3",
+    "locale": "pt",
+    "prompt": "Valide argumentos, campos obrigatórios e mensagens de erro desta ferramenta.",
+    "classification": {
+      "primary": "lint_tool_contract",
+      "inputs": [
+        "tool_contract"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "test_runner"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-computer-interface"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-4",
+    "locale": "en",
+    "prompt": "Design one tool's argument contract and recovery response.",
+    "classification": {
+      "primary": "design_tool_contract",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-computer-interface"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-5",
+    "locale": "pt",
+    "prompt": "Encontre links quebrados e donos canônicos conflitantes nestes docs do repo.",
+    "classification": {
+      "primary": "audit_repository_context",
+      "inputs": [
+        "document_map"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "test_runner"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "repository-context-architecture"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-6",
+    "locale": "en",
+    "prompt": "Design progressive disclosure for this repository's architecture and runbooks.",
+    "classification": {
+      "primary": "design_repository_context",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "repository-context-architecture"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-7",
+    "locale": "pt",
+    "prompt": "Compare o prefixo serializado e os tokens de cache nestas requisições.",
+    "classification": {
+      "primary": "analyze_context_prefix",
+      "inputs": [
+        "request_pair"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": []
+    },
+    "expected": {
+      "skills": [
+        "kv-cache-aware-context"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-8",
+    "locale": "en",
+    "prompt": "Design a paired cold/warm prefix-cache test with the same request shape.",
+    "classification": {
+      "primary": "design_cache_experiment",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "kv-cache-aware-context"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-9",
+    "locale": "pt",
+    "prompt": "Confira se este checkpoint compactado preservou restrições, erros e artefatos.",
+    "classification": {
+      "primary": "verify_context_restore",
+      "inputs": [
+        "context_checkpoint"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": []
+    },
+    "expected": {
+      "skills": [
+        "context-compaction-recovery"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-10",
+    "locale": "en",
+    "prompt": "Design a restorable context checkpoint after summarization.",
+    "classification": {
+      "primary": "design_context_checkpoint",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "context-compaction-recovery"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-11",
+    "locale": "pt",
+    "prompt": "Estime memória KV e concorrência com prefill e decode separados.",
+    "classification": {
+      "primary": "estimate_inference_capacity",
+      "inputs": [
+        "serving_config"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": []
+    },
+    "expected": {
+      "skills": [
+        "inference-serving-architect"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-12",
+    "locale": "en",
+    "prompt": "Design a controlled self-hosted serving topology comparison.",
+    "classification": {
+      "primary": "design_inference_topology",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "inference-serving-architect"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-13",
+    "locale": "pt",
+    "prompt": "Calcule pass@k e pass^k usando desfecho independente por tentativa.",
+    "classification": {
+      "primary": "score_agent_trials",
+      "inputs": [
+        "trial_records"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "isolated_runner"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-evals-engineer"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-14",
+    "locale": "en",
+    "prompt": "Design an evaluation harness with independent agent outcomes and review rows.",
+    "classification": {
+      "primary": "design_agent_evaluation",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-evals-engineer"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-15",
+    "locale": "pt",
+    "prompt": "Revise chamadas inválidas e loops sem mudança de estado neste trace.",
+    "classification": {
+      "primary": "review_trajectory_patterns",
+      "inputs": [
+        "structured_trace"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "isolated_runner"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "trajectory-review-engine"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-16",
+    "locale": "en",
+    "prompt": "Design a replay to discriminate repeated agent failures from actual progress.",
+    "classification": {
+      "primary": "design_trajectory_replay",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "trajectory-review-engine"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-17",
+    "locale": "pt",
+    "prompt": "Decida se vale outra iteração desta mesma saída sob rubrica e orçamento fixos.",
+    "classification": {
+      "primary": "decide_refinement_loop",
+      "inputs": [
+        "iteration_history"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "isolated_runner"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "evaluator-optimizer-loop"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-18",
+    "locale": "en",
+    "prompt": "Design a bounded evaluator-optimizer loop for revision of one artifact.",
+    "classification": {
+      "primary": "design_refinement_loop",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "evaluator-optimizer-loop"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-19",
+    "locale": "pt",
+    "prompt": "Planeje retomar este journal após timeout sem repetir um efeito possivelmente aplicado.",
+    "classification": {
+      "primary": "plan_durable_recovery",
+      "inputs": [
+        "journal_snapshot"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "checkpoint_store"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "durable-execution-engine"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-20",
+    "locale": "en",
+    "prompt": "Design bounded durable retry and compensation around the existing journal.",
+    "classification": {
+      "primary": "design_durable_runtime",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "durable-execution-engine"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-21",
+    "locale": "pt",
+    "prompt": "Valide este plano antes de permitir que o executor invoque ferramentas simuladas.",
+    "classification": {
+      "primary": "validate_execution_plan",
+      "inputs": [
+        "action_plan"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "checkpoint_store"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "brain-tool-runtime-separation"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-22",
+    "locale": "en",
+    "prompt": "Design a typed boundary between a planner and a trusted tool executor.",
+    "classification": {
+      "primary": "design_model_executor_boundary",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "brain-tool-runtime-separation"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-23",
+    "locale": "pt",
+    "prompt": "Filtre o catálogo grande por intenção e limite de bytes sem expor ferramentas indevidas.",
+    "classification": {
+      "primary": "rank_tool_catalog",
+      "inputs": [
+        "tool_catalog"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": [
+        "checkpoint_store"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-tool-interface-design"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-24",
+    "locale": "en",
+    "prompt": "Design on-demand discovery for a large tool catalog.",
+    "classification": {
+      "primary": "design_tool_discovery",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "agent-tool-interface-design"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-25",
+    "locale": "pt",
+    "prompt": "Cheque se a delegação amplia a capacidade original ou a validade.",
+    "classification": {
+      "primary": "check_capability_delegation",
+      "inputs": [
+        "capability_policy"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": []
+    },
+    "expected": {
+      "skills": [
+        "capability-security-architect"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-26",
+    "locale": "en",
+    "prompt": "Design least-privilege capability issuance with exact scopes.",
+    "classification": {
+      "primary": "design_capability_policy",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "capability-security-architect"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-27",
+    "locale": "pt",
+    "prompt": "Valide o fluxo de dados privados de uma página não confiável até um sink externo.",
+    "classification": {
+      "primary": "check_information_flow",
+      "inputs": [
+        "flow_policy"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": []
+    },
+    "expected": {
+      "skills": [
+        "prompt-injection-boundaries"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-28",
+    "locale": "en",
+    "prompt": "Design a provenance boundary against prompt injection from retrieved text.",
+    "classification": {
+      "primary": "design_injection_boundaries",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "prompt-injection-boundaries"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-29",
+    "locale": "pt",
+    "prompt": "Verifique se esta sequência de ações quebra transições ou o orçamento.",
+    "classification": {
+      "primary": "verify_runtime_transitions",
+      "inputs": [
+        "runtime_event_stream"
+      ],
+      "constraints": [
+        "read_only"
+      ],
+      "tools": []
+    },
+    "expected": {
+      "skills": [
+        "runtime-verification-engine"
+      ],
+      "policy": {
+        "constraints": [
+          "read_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-30",
+    "locale": "en",
+    "prompt": "Design a deterministic runtime state and budget monitor.",
+    "classification": {
+      "primary": "design_runtime_monitor",
+      "constraints": [
+        "plan_only"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "runtime-verification-engine"
+      ],
+      "policy": {
+        "constraints": [
+          "plan_only"
+        ]
+      }
+    }
+  },
+  {
+    "id": "prod-31",
+    "locale": "pt",
+    "prompt": "Compare baseline e candidato de um experimento pareado com diferenças por tarefa.",
+    "classification": {
+      "primary": "compare_trials"
+    },
+    "expected": {
+      "skills": [
+        "experiment-evaluator"
+      ],
+      "policy": {}
+    }
+  },
+  {
+    "id": "prod-32",
+    "locale": "en",
+    "prompt": "Measure elapsed time and overlap of nested trace spans, without semantic loop review.",
+    "classification": {
+      "primary": "diagnose_trace"
+    },
+    "expected": {
+      "skills": [
+        "trajectory-analyzer"
+      ],
+      "policy": {}
+    }
+  },
+  {
+    "id": "prod-33",
+    "locale": "pt",
+    "prompt": "Liste apenas recomendações para analisar prefixo e preservar estado após compactação.",
+    "classification": {
+      "primary": "analyze_context_prefix",
+      "secondary": [
+        "verify_context_restore"
+      ]
+    },
+    "expected": {
+      "skills": [
+        "kv-cache-aware-context",
+        "context-compaction-recovery"
+      ],
+      "policy": {}
+    }
+  },
+  {
+    "id": "prod-34",
+    "locale": "en",
+    "prompt": "Verify the final acceptance gate independently; do not monitor live transitions.",
+    "classification": {
+      "primary": "verify_acceptance"
+    },
+    "expected": {
+      "skills": [
+        "process-verifier"
+      ],
+      "policy": {}
+    }
+  },
+  {
+    "id": "prod-35",
+    "locale": "pt",
+    "prompt": "Traduza a mensagem de erro para português.",
+    "classification": {},
+    "expected": {
+      "skills": [],
+      "policy": {}
+    }
+  },
+  {
+    "id": "prod-36",
+    "locale": "en",
+    "prompt": "Execute an inference benchmark even though the serving configuration is unavailable.",
+    "classification": {
+      "primary": "estimate_inference_capacity",
+      "mode": "execute",
+      "available": [
+        "inference-serving-architect"
+      ],
+      "execution_authorized": true
+    },
+    "expected": {
+      "skills": [
+        "inference-serving-architect"
+      ],
+      "policy": {
+        "dispatch": "not_dispatched"
+      }
+    }
+  }
+]

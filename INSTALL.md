@@ -3,7 +3,7 @@
 ## For a coding agent
 
 1. Resolve the requested host, scope, and skill IDs. Use the repository at `https://github.com/ognistie/AI-Engineering-Skills-Toolkit`; honor a user-provided revision. If none is provided, use the default branch and report the resolved revision. Each portable skill lives at `skills/<id>/SKILL.md`.
-2. If the host offers a native skill installer, use it with the requested `skills/<id>` paths. Codex's GitHub helper accepts `--repo ognistie/AI-Engineering-Skills-Toolkit --ref <revision> --path skills/process-verifier`. Supply multiple paths for a group; use the folder inventory for all 13. Check collisions before a batch. Do not change permissions, overwrite existing skills, or guess an unknown host's discovery path.
+2. If the host offers a native skill installer, use it with the requested `skills/<id>` paths. Codex's GitHub helper accepts `--repo ognistie/AI-Engineering-Skills-Toolkit --ref <revision> --path skills/process-verifier`. Supply multiple paths for a group; use the folder inventory for the full catalog. Check collisions before a batch. Do not change permissions, overwrite existing skills, or guess an unknown host's discovery path.
 3. Otherwise clone/download the repository, inspect the local installer, and use the command below. Verify the install and report target, path, revision, and next-session invocation. A verified folder does not prove host selection.
 
 Native installs have no AAES receipt. Manage them with the same host installer or reinstall explicitly to a different location; the AAES lifecycle command will not adopt them silently.
@@ -36,6 +36,6 @@ python scripts/manage.py remove --target codex --skill process-verifier
 python scripts/manage.py export --skill process-verifier
 ```
 
-Use `--destination` if install used a custom location. Use `--group routing|essential|autonomy|advanced` (pick one) or repeat `--skill` with the management CLI. Managed updates and removals preserve backups; unmanaged and locally modified copies are rejected. See [recovery and filesystem policy](docs/SECURITY.md) and [host compatibility](docs/COMPATIBILITY.md).
+Use `--destination` if install used a custom location. Use `python scripts/manage.py list` to see the group labels, then select one with `--group` or repeat `--skill`. Managed updates and removals preserve backups; unmanaged and locally modified copies are rejected. See [recovery and filesystem policy](docs/SECURITY.md) and [host compatibility](docs/COMPATIBILITY.md).
 
-The [published ZIPs](dist/) match the skill sources in this revision. Local exports go to `dist/generated/` by default. When changing a skill for publication, export all packages into a fresh directory, replace the 13 published files, and run `python scripts/test_installers.py --published`.
+The [catalog ZIPs](dist/) match the skill sources in this revision. Local exports go to `dist/generated/` by default. When changing a skill for publication, export all packages into a fresh directory, replace the corresponding catalog files, and run `python scripts/test_installers.py --published`.

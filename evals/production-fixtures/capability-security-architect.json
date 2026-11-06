@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "now": 10,
+  "parent": {
+    "subject": "operator",
+    "tools": [
+      "read"
+    ],
+    "resources": [
+      "case/1"
+    ],
+    "effects": [
+      "read"
+    ],
+    "expires": 20,
+    "delegable": true
+  },
+  "child": {
+    "subject": "worker",
+    "tools": [
+      "read"
+    ],
+    "resources": [
+      "case/1"
+    ],
+    "effects": [
+      "read"
+    ],
+    "expires": 15,
+    "delegable": false,
+    "issuer": "operator"
+  },
+  "request": {
+    "subject": "worker",
+    "tool": "read",
+    "resource": "case/1",
+    "effect": "read"
+  }
+}

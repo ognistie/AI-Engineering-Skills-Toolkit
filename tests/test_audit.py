@@ -10,6 +10,16 @@ from test_advanced import fixture
 
 
 class AuditRegression(unittest.TestCase):
+    def test_explicit_routing_requires_analysis_inputs_for_dispatch(self):
+        name = "inference-serving-architect"
+        request = {"mode":"explicit","primary":"estimate_inference_capacity","explicit":name,
+                   "available":[name],"execution_authorized":True}
+        result = router.route(request,catalog)
+        self.assertEqual(result["selected"][0]["mode"],"plan")
+        self.assertEqual(result["dispatch"],"not_dispatched")
+        self.assertEqual(router.route(request | {"inputs":["serving_config"]},catalog)["dispatch"],
+                         "host_may_dispatch_within_scope")
+
     def test_explicit_skill_does_not_claim_unrelated_capability_or_dispatch(self):
         result = router.route({"mode":"execute", "explicit":"process-verifier",
                                "primary":"analyze_activation_patch", "execution_authorized":True,

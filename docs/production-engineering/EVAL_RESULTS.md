@@ -1,0 +1,7 @@
+# Evaluation evidence
+
+The original 64 structured routing cases are retained; 36 additional PT/EN cases cover all 15 skills, read-only and plan-only modes, absent inputs, near neighbors, composition and abstention. The policy suite scored all 100 against predeclared classifications; it does not measure free-text activation. Across the two suites, 53 cases check explicit constraints and/or policy. The original independent annotations remain a separate artifact.
+
+The fresh paired pilot used four identical questions per arm with separate agents. Baseline had no skills; treatment read the four relevant skills and exercised their local check functions. Both arms made the correct decision on all four: reconcile an uncertain effect after deadline, block private export, compute 0.75 / 1.00 / 0.50 for pass@1 / pass@2 / pass^2, and retain a verified artifact after an invalid improvement. Treatment additionally showed tool outputs and precise denial or stop reasons. This was one observation per question per arm, without pinned model version, blinded graders, billed usage or timing. No general gain is supported.
+
+For further work: freeze model, environment and revision; preserve task families across repeated trials; run independently graded capability, regression and adversarial cohorts; log intervention counts and cost per successful attempted task. Inspect transcripts and independent final state. Keep model judgments diagnostic until calibrated.

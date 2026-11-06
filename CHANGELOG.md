@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+- Add 15 production-engineering skills with portable local tools, scientific references and fixtures.
+- Preserve existing trace and checkpoint contracts; compose recovery and safety demonstrations with them.
+- Add 36 structured routing cases and a paired pilot for four workflows.
+- Bind privileged flows to trusted artifact lineage and grade only frozen trials with distinct, externally collected evidence.
+- Fix explicit dispatch without prerequisites, local recovery races, interleaved stall detection and Markdown links with titles.
+- Publish 28 portable archives and run the independent audit probes as CI regressions.
+
 ## 0.1.1
 
 - Add AIWorkbench-style PowerShell and POSIX install commands and agent-directed installation.

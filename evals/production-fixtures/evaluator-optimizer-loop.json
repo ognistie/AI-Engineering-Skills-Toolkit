@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "rubric": "rubric-r1",
+  "max_iterations": 4,
+  "budget": 6,
+  "next_cost": 3,
+  "patience": 2,
+  "target_score": 0.9,
+  "history": [
+    {
+      "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "rubric": "rubric-r1",
+      "score": 0.76,
+      "cost": 2,
+      "verified": true
+    },
+    {
+      "artifact_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "rubric": "rubric-r1",
+      "score": 0.98,
+      "cost": 2,
+      "verified": false
+    }
+  ]
+}

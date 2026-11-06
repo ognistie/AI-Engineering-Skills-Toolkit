@@ -17,8 +17,11 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - run: python scripts/validate.py
       - run: python evals/score_routing.py --annotations evals/routing/independent-annotations.json
+      - run: python evals/score_routing.py --cases evals/routing/production-cases.json
       - run: python -m unittest discover -s tests -v
       - run: python evals/run_controls.py
+      - name: Run independent audit regression controls
+        run: python -B audit/production-ai-engineering/run_audit.py --repo . --out audit/production-ai-engineering/evidence/ci-results.json --require-clean
       - run: python scripts/test_installers.py --published
       - if: runner.os == 'Windows'
         name: Test Git Bash on Windows

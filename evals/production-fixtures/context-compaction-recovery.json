@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "original": {
+    "schema_version": 1,
+    "objective": "Verify rollout",
+    "constraints": [
+      "offline"
+    ],
+    "state": {
+      "step": "test"
+    },
+    "decisions": [
+      "use ledger"
+    ],
+    "artifacts": [],
+    "evidence": [
+      "trace-1"
+    ],
+    "next_actions": [
+      "verify"
+    ],
+    "errors": [
+      "timeout"
+    ]
+  },
+  "restored": {
+    "schema_version": 1,
+    "objective": "Verify rollout",
+    "constraints": [
+      "offline"
+    ],
+    "state": {
+      "step": "test"
+    },
+    "decisions": [
+      "use ledger"
+    ],
+    "artifacts": [],
+    "evidence": [
+      "trace-1"
+    ],
+    "next_actions": [
+      "verify"
+    ],
+    "errors": [
+      "timeout"
+    ]
+  }
+}

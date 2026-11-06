@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tools": [
+    {
+      "name": "repo.read",
+      "description": "Read one named file",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "enum": [
+              1,
+              5
+            ]
+          }
+        },
+        "required": [
+          "limit"
+        ],
+        "additionalProperties": false
+      },
+      "errors": [
+        {
+          "code": "LIMIT",
+          "action": "Choose limit 1 or 5"
+        }
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "id": "ok",
+      "tool": "repo.read",
+      "arguments": {
+        "limit": 5
+      }
+    },
+    {
+      "id": "wrong-type",
+      "tool": "repo.read",
+      "arguments": {
+        "limit": true
+      }
+    }
+  ]
+}

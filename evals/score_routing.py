@@ -71,10 +71,11 @@ def main():
     cli.add_argument("--observed", type=Path, help="JSON keyed by case ID; do not include reference labels in host prompts")
     cli.add_argument("--k", type=int, default=3)
     cli.add_argument("--annotations", type=Path, help="Compare recommendations with independent raw-prompt labels")
+    cli.add_argument("--cases", type=Path, default=HERE / "routing/cases.json", help="Routing fixture suite")
     args = cli.parse_args()
     if args.k < 1:
         cli.error("--k must be positive")
-    cases = json.loads((HERE / "routing/cases.json").read_text(encoding="utf-8"))
+    cases = json.loads(args.cases.read_text(encoding="utf-8"))
     if args.observed:
         rows = json.loads(args.observed.read_text(encoding="utf-8"))
         timing = {"source": "external observations; provenance not verified", "local_policy_mean_ms": None}

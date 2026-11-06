@@ -1,0 +1,1 @@
+{"verified_skills": 28, "portable_zips": 28, "single_skill_and_resumable_catalog": true, "published_zips_verified": true, "wrapper": "posix"}

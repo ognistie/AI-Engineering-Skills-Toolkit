@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "active_control": "local_summary",
+  "trusted_controls": {
+    "local_summary": [
+      "local"
+    ],
+    "authorized_export": [
+      "external"
+    ]
+  },
+  "trusted_labels": {
+    "ticket": [
+      "public"
+    ],
+    "secret": [
+      "private"
+    ]
+  },
+  "sinks": {
+    "local": [
+      "public",
+      "private"
+    ],
+    "external": [
+      "public"
+    ]
+  },
+  "trusted_binding": {
+    "control": "local_summary",
+    "sink": "local",
+    "source_ids": [
+      "ticket",
+      "secret"
+    ],
+    "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "action": {
+    "control": "local_summary",
+    "sink": "local",
+    "inputs": [
+      "ticket",
+      "secret"
+    ],
+    "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

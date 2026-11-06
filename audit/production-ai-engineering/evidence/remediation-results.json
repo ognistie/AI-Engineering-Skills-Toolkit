@@ -1,0 +1,2458 @@
+{
+  "environment": {
+    "platform": "Windows",
+    "python": "3.12.14"
+  },
+  "inventory": {
+    "skills": 28,
+    "tested_expansion_skills": 15
+  },
+  "input_hashes": {
+    "dist/adaptive-reasoning.zip": "50bdcee2ad87c1c035e27038ed7d2325edc7685b104fe58b884594d713007e7c",
+    "dist/agent-computer-interface.zip": "742dff1989afd2ba023eca281edf0318987b64fccf4d12e1f9a7c9a7836349a1",
+    "dist/agent-evals-engineer.zip": "5e87a083f5a1ecef1ed1954816ca9bf5bf8ec6b430e37c816d218e84fc0f497a",
+    "dist/agent-first-harness.zip": "67685961782b737ef512cf7f2ef4f98b75f007223369cbb46c0b6201bf41b1ac",
+    "dist/agent-tool-interface-design.zip": "a536e93f78045ebf735dcb927adee1f5340a0308d219744c6f9da7b3402b084f",
+    "dist/agentic-rl-lab.zip": "cc4647947486b338cb40db875fe3c7ea8336c97037bc281c9e207552c03b7294",
+    "dist/brain-tool-runtime-separation.zip": "eff35135b3b8d9a30146570d58831064551d81b94b070666e8256742aa2eb557",
+    "dist/capability-security-architect.zip": "f46f21c15df16f6b2ff9650c63ac7c5b1b91e0e956c3a6f1c173140897d0b0e0",
+    "dist/context-compaction-recovery.zip": "50e04a7804a8abe3aac086981730fbc110622d7f41e0424215311065cbed4b16",
+    "dist/durable-execution-engine.zip": "571ee42c41c36f281347690ad02434537c8a0a7f2945bbf8115c853a48fd5a33",
+    "dist/evaluator-optimizer-loop.zip": "4d5e68ac27bfa75755fc6fb7b911cfe39835e733d00e0adbeb26d468cac4b482",
+    "dist/evolutionary-optimizer.zip": "7e5b014cb0a68a22aaab55940423ae1d5b5e97d217955eef21b36ca712cd58a5",
+    "dist/experiment-evaluator.zip": "e4a5ba29f9eea35757bd5cecd3a64060a6431e4995e4a20dc1a89ae94ef86eee",
+    "dist/hypothesis-lab.zip": "0dc0c55703d760f35a7c6356f1575e1dbf99044db6ca7c45c7c30ad507a5d497",
+    "dist/inference-serving-architect.zip": "26b660f45edd1beae4098457b549e780042dee6d450a7c9998268f1bfc4d37ff",
+    "dist/kv-cache-aware-context.zip": "8dd09fb02571dddbcbd8c276020772f2fac97f6c63eb58ec2bc91b450d027dfb",
+    "dist/long-horizon-executor.zip": "89f81541b8f0cdbf74979c2b7665af75541103536cf5b2562f957fcb3147745d",
+    "dist/mechanistic-interpretability.zip": "a115dfc08bcf831a1912cbc2b3bb237c956c20188765ad4e91326057e9626703",
+    "dist/multi-agent-router.zip": "9e49097a87b7fe0c404fd73417bdf8d213dd3de064397528d8fe968bf1b6cca9",
+    "dist/process-verifier.zip": "3b3a66171e7d0d576d604a5b7dde16b7230ddbdc4117fd5a6e09c1cc9edc4202",
+    "dist/prompt-injection-boundaries.zip": "f37c2d6ceeccf263188aee4a6aa7c3b70c876595021e8df98395f782abba889e",
+    "dist/repository-context-architecture.zip": "ae481bef0626b529acc39ab4a2f483b9c357887196fd7b4a5ab20122614cbd9f",
+    "dist/research-orchestrator.zip": "40a9bec9f21aa2f986df8084c2af66c21c54d0dd1097f02bf8744739e2215188",
+    "dist/runtime-guardian.zip": "77f5568cca4f02801815f5fed650cdc362b299b3c4c6a721b51630dbba999836",
+    "dist/runtime-verification-engine.zip": "71cf02d016df93d0c5908e3e24562cbcafc865247af82df9a847de49eeab531d",
+    "dist/skill-orchestrator.zip": "311a2f9a6b507a0694b443684557849750c1ee0c9769f7158cf6fd83ec0c23ab",
+    "dist/trajectory-analyzer.zip": "c9e7192788227dc1eae4861e14401218f9036126d70dff582e48bb9b33884a7d",
+    "dist/trajectory-review-engine.zip": "866dca930cde6bad7f39a39ed6d5f5d8955096b5947466ab2fa7c330c6a07624",
+    "scripts/manage.py": "28ff806c90f6c1176529c39fae36e240b8419c8b8667df292fbd5ea46cdc528b",
+    "scripts/test_installers.py": "0f5d2c8ab3e9894fb90d31c8e6bd222cb6cc1cc5213bb9c3e10050c9c6d1ea6f",
+    "scripts/validate.py": "3b5345d04a16db5b685d120127c3be24aa6575fa36c661bb14c1455e71731436",
+    "skills/adaptive-reasoning/references/RESEARCH_BASIS.md": "421e38d2a544163d3e8581320d9ab64d65f3b4933ca6b2469499e4b6471b3cd3",
+    "skills/adaptive-reasoning/references/TECHNICAL_GUIDE.md": "cfe10e72d97582fbe6926927a54b42c3b5fce9a553ca7963d8ef4c57896e38f2",
+    "skills/adaptive-reasoning/references/USE_CASES.md": "731a8deae47d210100b4912c1987eb4b46862141b61a52cc813f695e3ff581b5",
+    "skills/adaptive-reasoning/scripts/decide.py": "5d92d480390a143c555c163d8c58cd41da1f43fdd3ff5759170768a79883b75f",
+    "skills/adaptive-reasoning/SKILL.md": "bc5ddddfdfb6ecd6c4c4b5012a5d2c037d0c1f90fd1784337729a20e1b9972e7",
+    "skills/agent-computer-interface/references/RESEARCH_BASIS.md": "1bab26d29d18c79210a5685de4452e74d1a4d4577b46716322ed0ed7b8a111c7",
+    "skills/agent-computer-interface/references/TECHNICAL_GUIDE.md": "198ef7cf4bcb519f8cc69911107878bae29d5683b485f976913ae3dcf5603113",
+    "skills/agent-computer-interface/references/USE_CASES.md": "c81ee84b83bace4d40637818cb02d9bcfe4f9c7ad2cfe00835493d77372c0891",
+    "skills/agent-computer-interface/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/agent-computer-interface/scripts/check.py": "467267acc683627a988225aa3d863ce94c1133d87e5de12d643fdd2715718e08",
+    "skills/agent-computer-interface/SKILL.md": "eaa0d611edbda2b244f1d85721fcce96229007d1f90c7d708c37cf2c8d596a89",
+    "skills/agent-evals-engineer/references/RESEARCH_BASIS.md": "ef540aeb57ad42a03a0a2f05080b388210066722998fca998880692ff3f9c514",
+    "skills/agent-evals-engineer/references/TECHNICAL_GUIDE.md": "c68dee713dc73c39b9fc1612adc9670d052aa9bff7cf4f5fc82626f3398f633d",
+    "skills/agent-evals-engineer/references/USE_CASES.md": "8cb942165ee75c7a05ce3090223f4b16e6959e408646d98e405c288550c9b169",
+    "skills/agent-evals-engineer/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/agent-evals-engineer/scripts/check.py": "b12e451c0f9e7602a4ce6fafbfc60a85a39805951b15c2a6ac4abfa3e187bed0",
+    "skills/agent-evals-engineer/SKILL.md": "63b736d064a588d7fa95fbc7fe7a97070dab70e149d1c7f46effe1b09f0c0f3d",
+    "skills/agent-first-harness/references/RESEARCH_BASIS.md": "fab1d32dc46e16790dbdd5444f845bb3ccd401f94c72cb19d17208c3f2f31da6",
+    "skills/agent-first-harness/references/TECHNICAL_GUIDE.md": "821243dab2f7820e7bfce4a5b0c2dfc136ca7b4915fd3872785ebbd8d6331aad",
+    "skills/agent-first-harness/references/USE_CASES.md": "865b08e2dd7a2313b4a89e262d803d4745253906eaff0655d572593e22ec3522",
+    "skills/agent-first-harness/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/agent-first-harness/scripts/check.py": "9315d10ab8d4de7e78dc5a1f225df5e13389320c7d8c2093f9688c5b742f45d8",
+    "skills/agent-first-harness/SKILL.md": "993b57b552e589fe65350afed94e8e41c87c5305993821ad83cfeba66e5b39e9",
+    "skills/agent-tool-interface-design/references/RESEARCH_BASIS.md": "a4e0324ddffeff8bebb6df7956a7cc37cf8898ef4670971f437f603800a0a86b",
+    "skills/agent-tool-interface-design/references/TECHNICAL_GUIDE.md": "2e16bd2ff8696de5693aa78eb19debadf606cc4faf1d8885a6866069b4e911f8",
+    "skills/agent-tool-interface-design/references/USE_CASES.md": "cede7c2026e05674ee6695889434b9fbe1b9d6bfb2b0fcaf8a94063ef338d415",
+    "skills/agent-tool-interface-design/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/agent-tool-interface-design/scripts/check.py": "d49cbc0b264cbb00ca7be8fa763c3b1e2dffe705eeb2e1f577efa72a0151b7a6",
+    "skills/agent-tool-interface-design/SKILL.md": "a690923e0041e4b9d8873a3038b9643b6152c881c51e3bf2b8dec87c1754e71d",
+    "skills/agentic-rl-lab/references/RESEARCH_BASIS.md": "d681dea360d1799dcaee6576b17b7eb1c200dd7be020413dd28fbaabc6f0f28e",
+    "skills/agentic-rl-lab/references/TECHNICAL_GUIDE.md": "712754bdb799fe3ade5191b7b9ce5ce0bec6aab2e89e592501638b750756e9e4",
+    "skills/agentic-rl-lab/references/USE_CASES.md": "43e8630f495d77ec375bf810d529677392b50af1b72e82274d6bf011c5bc0988",
+    "skills/agentic-rl-lab/scripts/rollouts.py": "cef58e957c24311b9b0d89e6eef3892a240fe238974230522e960f579261ee5e",
+    "skills/agentic-rl-lab/SKILL.md": "f52946d1fca68c4b4a834f4909ac2481809a130ead23f530c29b380d33e403c3",
+    "skills/brain-tool-runtime-separation/references/RESEARCH_BASIS.md": "628d21a87fe14a66033f21c9a0d2f88f2cc05b2d37281bc741d311cda59f3ceb",
+    "skills/brain-tool-runtime-separation/references/TECHNICAL_GUIDE.md": "5f76d0c40d1931c5d372bec835f99e5277ec9ae3be344fe3043ebdfb43038249",
+    "skills/brain-tool-runtime-separation/references/USE_CASES.md": "fa9a70573cc1f9ba265f7cae7f4c2180ff0f9cd34223d974026b00771194e4d8",
+    "skills/brain-tool-runtime-separation/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/brain-tool-runtime-separation/scripts/check.py": "0512ed0cfa2a0f44872eb2e04f7a50937e10a340e2a82e18375719d966af7dc9",
+    "skills/brain-tool-runtime-separation/SKILL.md": "33e3f5c6610495a7c0f2d7474320005c9b81a83a05af1764d6312608beacb3c2",
+    "skills/capability-security-architect/references/RESEARCH_BASIS.md": "99d52ee15fbf5cafed86b04af821b1372e54e7a5828966aa3cef4de8cecf88f8",
+    "skills/capability-security-architect/references/TECHNICAL_GUIDE.md": "355eb2e20f261f28ea21db6a9037ca1f657773439630c5c95542d0bf5a430286",
+    "skills/capability-security-architect/references/USE_CASES.md": "6f25d12c7f964f0469cd3a4c250cf5939d72a594310dcef3bdebc0d890fbaa96",
+    "skills/capability-security-architect/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/capability-security-architect/scripts/check.py": "d1e6b1a366034aaa4ec6af9e9b624ef6ad9d67d17211173220466730d8eeeb34",
+    "skills/capability-security-architect/SKILL.md": "34b5b6fd792ec14ce15655b48bd95c4b81d33ce8fc4c32fa9cfcb4b0f489e190",
+    "skills/context-compaction-recovery/references/RESEARCH_BASIS.md": "591ede430dcc7ecaf34d309beab334a4c787bda2bf9b101abfa3d1cd5a25650f",
+    "skills/context-compaction-recovery/references/TECHNICAL_GUIDE.md": "ff810d55ae5811508b4febda8902ba3cff027eafdd67ce4295062c96557f04f5",
+    "skills/context-compaction-recovery/references/USE_CASES.md": "ee13a5bc9ac461f804116f6919a14f891023612f9e0379b554ecc37d85c3c916",
+    "skills/context-compaction-recovery/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/context-compaction-recovery/scripts/check.py": "fe87f4a4757099f3d68e61a554f8a29abfa41a2a695a71e926bb59698b12bb9a",
+    "skills/context-compaction-recovery/SKILL.md": "da1c46ef7932fe776117eac0502cb075e7819f38afb471f0b3875ad87d40cf6a",
+    "skills/durable-execution-engine/references/RESEARCH_BASIS.md": "49356b69660da55a6fd23b0d8c8ac79b0096c4271babe5c11267c8ba047567b1",
+    "skills/durable-execution-engine/references/TECHNICAL_GUIDE.md": "1a4b6c4510c2b5eab08a774d48788b722c1cf2fb091ba54f5ad479ceff28b1d8",
+    "skills/durable-execution-engine/references/USE_CASES.md": "0db81ace2e0cf43f4d7759b40be75df228cbca0e4f7445f84b479ae7a812b834",
+    "skills/durable-execution-engine/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/durable-execution-engine/scripts/check.py": "553b311b46524e61c0d2a6a3317027a61ba2e56d2f726ce4bc679bdc1e1651b7",
+    "skills/durable-execution-engine/scripts/demo.py": "1ca5e7414069d3b263aaba038a3f7d85f32d249ec57e5e43fe99749551b93f4d",
+    "skills/durable-execution-engine/SKILL.md": "24019dc5e020c10d4eec8ea503671f592b4049d069e043bbf77e6f59f059ffd3",
+    "skills/evaluator-optimizer-loop/references/RESEARCH_BASIS.md": "53953c0dcbc560ae87ca00489c438e37f59f170aa23335e4868f17cf6e55dcb0",
+    "skills/evaluator-optimizer-loop/references/TECHNICAL_GUIDE.md": "0dd04a627f4877d0bde6b697ba42314dd152de6c28e91793bb32ea45cf069db2",
+    "skills/evaluator-optimizer-loop/references/USE_CASES.md": "a1f89c270a39c8c363d012b8e9cc5f6df46371c4f2df730fcaf85cd32fe490ba",
+    "skills/evaluator-optimizer-loop/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/evaluator-optimizer-loop/scripts/check.py": "c7f9e9b833f7e01c80544d16b5c76f6fe9ef80dd080675f5e369ec5dc418a44d",
+    "skills/evaluator-optimizer-loop/SKILL.md": "a0b514b4478ea45c63283942a0f36e3c0e806ea5c7fe251fcf074655d0ef96da",
+    "skills/evolutionary-optimizer/references/RESEARCH_BASIS.md": "2079b6d1aef6d5d08d474b29affbe1900c5b82bfd68098bc0c48b5234f6b2159",
+    "skills/evolutionary-optimizer/references/TECHNICAL_GUIDE.md": "04f56bb9a42fef1a9a767415439086bc8f81929e7aa924a90724b69a9b558d7c",
+    "skills/evolutionary-optimizer/references/USE_CASES.md": "edb402ddf0a3bd8bfb49acb34d4909c485c9995b0beae8eecdb96897316b591d",
+    "skills/evolutionary-optimizer/scripts/archive.py": "2a0baf700d700eaf5f660122e1df0dd42c39494465dd52a426ca1abbe4008009",
+    "skills/evolutionary-optimizer/SKILL.md": "9c43d5cdbbddfdec8f0fb043c3d7524da81fb70138e0d24c136eadecf2de9b6a",
+    "skills/experiment-evaluator/agents/openai.yaml": "78950d0028ee87ea561ee1459d2045ef9c0ed4f9986f3cd705da851bdf1d16f2",
+    "skills/experiment-evaluator/references/RESEARCH_BASIS.md": "60d2d1fc089eee2a93dace4626a852767e8fca7378c181f3f45a2ba63a5470d1",
+    "skills/experiment-evaluator/references/TECHNICAL_GUIDE.md": "8e1778164c672a30cc77a68eda5b921bd2e6a255d13767716244e1753b5a9e8a",
+    "skills/experiment-evaluator/references/USE_CASES.md": "0d12ae26dd3ec3110344d887a26ebcbda31422f8b642f507cb348226f61a99f1",
+    "skills/experiment-evaluator/scripts/compare.py": "adcd5f859d34b11498ef22960f3695011737165e7363d2812d708e3acafecfdc",
+    "skills/experiment-evaluator/SKILL.md": "f6463b93ed2b96c063d2a1bee3274db692465ca0516343504460c8d2220fc76f",
+    "skills/hypothesis-lab/references/RESEARCH_BASIS.md": "a801e5f213d5ef5cc803b5ff8124b1565b139d56c11a2b3a88575173c4f34e23",
+    "skills/hypothesis-lab/references/TECHNICAL_GUIDE.md": "ecf1720a3da0ae5d1756156cd3aa48558b58941a34b4bad5c950a5a336f89d87",
+    "skills/hypothesis-lab/references/USE_CASES.md": "4cfc8e6ef67f4668af552c42a6ef20e7ff25cba5d62e8106d42c4ad156424f11",
+    "skills/hypothesis-lab/scripts/matrix.py": "a9c461e20fe94c4725dd8a7b1acd9d5a5bb8ee908aacad91f02c90a6512760e4",
+    "skills/hypothesis-lab/SKILL.md": "89d38926428d01481bde24fd9fe808d5af50618119f282669249275baf588695",
+    "skills/inference-serving-architect/references/RESEARCH_BASIS.md": "fd5d14117ab3fefadd92673cdbe54949b4d05d4d81b3f2ad278dbab4a3d943fb",
+    "skills/inference-serving-architect/references/TECHNICAL_GUIDE.md": "08f4499abf3a26d09637c78fbcccea6d7c6bfd8617b20b9ea2b8e7f1abf1283c",
+    "skills/inference-serving-architect/references/USE_CASES.md": "ad65d15ca12556a848774119587be99f7e2e4c031ae54fe190d869fb78e82ad0",
+    "skills/inference-serving-architect/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/inference-serving-architect/scripts/check.py": "1de6e1220000fcd3d2c21944677ec47db230a81d3e6143ea05b1d8547e76c028",
+    "skills/inference-serving-architect/SKILL.md": "bed4b602532b6295c9cd9bc596730b4f74ecdd6bde18728c38723507295fdc3d",
+    "skills/kv-cache-aware-context/references/RESEARCH_BASIS.md": "53275580ee6e4ae59eb2a90d1ba3b12e4c54bba3363c9aeab240126354a96bba",
+    "skills/kv-cache-aware-context/references/TECHNICAL_GUIDE.md": "87ca12d061a02c1fc34f1a92a7aa64ae8d10630f274da83c1c726bd60b409c97",
+    "skills/kv-cache-aware-context/references/USE_CASES.md": "30f7d57f08d3e4b96ad3aafa9129d892f496c1bf61dba91692c2edc974a5ac23",
+    "skills/kv-cache-aware-context/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/kv-cache-aware-context/scripts/check.py": "62994122e1ed22d8d22703bf21594bfb00cb1f9d5a7af171ff761792ee6402ad",
+    "skills/kv-cache-aware-context/SKILL.md": "c722fe4e9fd31c33057523eabac1252fbdafe79d278bb0145b671054ecbfcd1e",
+    "skills/long-horizon-executor/references/RESEARCH_BASIS.md": "b351030193943224c4658202d843d35b4d7f87282841d7374516226a75a56970",
+    "skills/long-horizon-executor/references/TECHNICAL_GUIDE.md": "68a21f6da0efec8a71a50c157d15956e78eae2555a77c04f18f06330465d31e2",
+    "skills/long-horizon-executor/references/USE_CASES.md": "4360e568bb8875b2ec964cad62e9c24790939fbd8db03607a7bebd062c70315e",
+    "skills/long-horizon-executor/scripts/checkpoint.py": "3265328254add152dd9592237342803e62f7512b05eabc75e9dbc83426ec1601",
+    "skills/long-horizon-executor/SKILL.md": "618e2fdc2177c4f937cbfaa28390b7e66ffa54a52a18e21efa9513a358a6a79a",
+    "skills/mechanistic-interpretability/references/RESEARCH_BASIS.md": "e5e2451d294240acd5f640af1c80f94b4c439f629b2a2a8dae314990ad3b7389",
+    "skills/mechanistic-interpretability/references/TECHNICAL_GUIDE.md": "b49f890be676827530fead3bb161f91fb0f6bf907d90c9a927f405352fb07847",
+    "skills/mechanistic-interpretability/references/USE_CASES.md": "97940bd6764e7ac9fb46ace4bd59dde9a8cef2d695fd6d7c46e99de323c7ea46",
+    "skills/mechanistic-interpretability/scripts/patch_metrics.py": "b01e3dcb589c7cff79fefd857d046c2171251920afbfd5e6658e09e02ba975d7",
+    "skills/mechanistic-interpretability/SKILL.md": "a9c3920adcd47d6a1bb41fec28b1ff0d9a74c2f0ccf7f047fd5df24aa3d0b60d",
+    "skills/multi-agent-router/references/RESEARCH_BASIS.md": "3b98a3b6bbd4b398cca557e211398f42a90e7996de249b7637ad25776236fd8e",
+    "skills/multi-agent-router/references/TECHNICAL_GUIDE.md": "bd0df6d2bbb714247be842c961fcfab7ea37b1d4f03fdb89cecd7930dee47f7f",
+    "skills/multi-agent-router/references/USE_CASES.md": "90f12603040269bbd5032bfae86a8ba2d65f2acce95e04e8f661ef93d31029ee",
+    "skills/multi-agent-router/scripts/schedule.py": "7ba979b13c0dedb23ac0ae385ca2d2c3ae22c41eb641749ef2e28476bdbb4cdc",
+    "skills/multi-agent-router/SKILL.md": "271d7e1669e1128a1ed43d60afd43e46ad8ff8c4377ea3b4df4d79b4b2517773",
+    "skills/process-verifier/agents/openai.yaml": "6ecef1654f18759da698c9c17e40853e100339f1e15430fc4f97d4a2aba4a828",
+    "skills/process-verifier/references/RESEARCH_BASIS.md": "23c5bd9148c2f9eaeeeb90d7f7d192ed3ddba7ec37c509f0bcdfe31a093e43fe",
+    "skills/process-verifier/references/TECHNICAL_GUIDE.md": "7f1d794939216ca08dd3d749b78c41c220d91b24d3d70309016cd25d541ad1d0",
+    "skills/process-verifier/references/USE_CASES.md": "cace11c825fb760e1c2315be5c5f8a880999e4231a022721862ae5d4640f60a7",
+    "skills/process-verifier/scripts/verify.py": "dbb703fe7ab6d011c353fef6696b2bfbf2683b0c079b6020425932d27a157f05",
+    "skills/process-verifier/SKILL.md": "d92b263b55b4d4603abbb245c3d2023bd6aed980ffa81794d9e12943cc9ff469",
+    "skills/prompt-injection-boundaries/references/RESEARCH_BASIS.md": "52ce3e2dc46f4ea79c767dff760e0dfa9fb2a0e62db7131293a439ad326b3710",
+    "skills/prompt-injection-boundaries/references/TECHNICAL_GUIDE.md": "65bbb3feee79aeeb99cff41beca27aa9742388b4bda58c03d28a0bad48860ecf",
+    "skills/prompt-injection-boundaries/references/USE_CASES.md": "67bd6a68ae2bef5da3d39ca9ae52d9100a23ca687c38edd96edf9632a47375b9",
+    "skills/prompt-injection-boundaries/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/prompt-injection-boundaries/scripts/check.py": "7421e4d1f52c4137e2f3ea82972255a960b5f12effbb037fab16e70c55a88690",
+    "skills/prompt-injection-boundaries/SKILL.md": "5bafb7405c9bf317b63feae5c7ab782680c3e98e800d079c4b445b61b5512bde",
+    "skills/repository-context-architecture/references/RESEARCH_BASIS.md": "01d0757d78d6143ef41d28c751cdc459d5457ebe55c06db94ea7dbef772093cf",
+    "skills/repository-context-architecture/references/TECHNICAL_GUIDE.md": "e5d7ba76a866802b722d2cf58fa23c2d22a2ca83e17be92ed9c8106d1b171aa6",
+    "skills/repository-context-architecture/references/USE_CASES.md": "b569a091f3a9af6518088798c3777961ae2fc441ac005c1a55718bff13879ca9",
+    "skills/repository-context-architecture/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/repository-context-architecture/scripts/check.py": "dcb14fcf1e4766103557cdb179825b8d8775fbffa5f81ac83cfee1921aadc6b3",
+    "skills/repository-context-architecture/SKILL.md": "401935473d9cefa4c1e00943e955db53cc725a545913d317cb5c78bd5595bb7b",
+    "skills/research-orchestrator/agents/openai.yaml": "22e98aba34cf4671c842f4b9c2ab752bd8d21b653217fa54308442528d2e9dd0",
+    "skills/research-orchestrator/references/RESEARCH_BASIS.md": "e032a41271c2b7a15a852e58888be86094698c959e8eef882d78bc04a265d434",
+    "skills/research-orchestrator/references/TECHNICAL_GUIDE.md": "23f64b4852e54fc4eb69a0e449a105a5dba723e80e0db285bb5659f09aeca7a0",
+    "skills/research-orchestrator/references/USE_CASES.md": "84fd83dddb0135b942578fdd49f410e0e4843d7415ae942c72a41997aeb5068e",
+    "skills/research-orchestrator/scripts/ledger.py": "fca44e12955f3e28af53fdecebcee9e2cd10feb7f7536f53b096f225acb26ecb",
+    "skills/research-orchestrator/SKILL.md": "5a3065b3f7cf5f0493028cb38fc48fad2051e6bdca3ed1ca233a285e8a639227",
+    "skills/runtime-guardian/references/RESEARCH_BASIS.md": "141593da70dbfcae32fbb313c565eab6d77ffcf7d9dbe7ba7400eed00892bc9e",
+    "skills/runtime-guardian/references/TECHNICAL_GUIDE.md": "ff0b7a2f57b0350b9581feea7fff8b371f10c0c64c61c84069286e39f964a7cd",
+    "skills/runtime-guardian/references/USE_CASES.md": "3092006d3934d903d0adf246283213998430de06e59063dc8ab52e611acf3bdf",
+    "skills/runtime-guardian/scripts/policy.py": "6c245ccd115145f584aa34a65ab24f180164665ba78f8bee587a2c2439ed1b23",
+    "skills/runtime-guardian/scripts/reservations.py": "1a4af98fccaf4687063b26ee272f490dfa503725dc2bc97b96ee4d92e673fe65",
+    "skills/runtime-guardian/SKILL.md": "4dc858792e4c6a8856e5790af28652cb43bec6203710ce87350b6d58e973b7b8",
+    "skills/runtime-verification-engine/references/RESEARCH_BASIS.md": "f3d56d80529c1f896bd7573fc161d8b4600b09505b67a420928ce691dd28ed5b",
+    "skills/runtime-verification-engine/references/TECHNICAL_GUIDE.md": "ddbfee3b34d83d63d5ec8a8504d7ea6775275ae4316b7a9d86fdb20827affdab",
+    "skills/runtime-verification-engine/references/USE_CASES.md": "b65742cebf7e6ac99060c756f3ae2d140a06568e011a4cf1c16172f1a508fca6",
+    "skills/runtime-verification-engine/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/runtime-verification-engine/scripts/check.py": "d407492caba1045c2c3f7be603ff196020ce4eaa0940ed5d5e998aea4a6a6b25",
+    "skills/runtime-verification-engine/SKILL.md": "795bedb7f9450b19763135faf1453191c8736085a34a6e4918c6f8f6326de650",
+    "skills/skill-orchestrator/agents/openai.yaml": "be52fd5d5da107d8282eb3600fcad2c2373f8190fb803ee577e815a71eade841",
+    "skills/skill-orchestrator/references/catalog.json": "c4d7ca441bc2c2b0db081f863bb00ac51026acf152cdb2052732698cd773db83",
+    "skills/skill-orchestrator/references/RESEARCH_BASIS.md": "19537702aa0736e629fea9dc1aea5bb8b444c3e5af6b099158bed05c15ae175f",
+    "skills/skill-orchestrator/references/TECHNICAL_GUIDE.md": "05d2c8da95668420fc1626a598663fae530f91f8ee9f8267cf8ea5df7d89fcaf",
+    "skills/skill-orchestrator/references/USE_CASES.md": "ef15b46ae809502e803389d70f17ad3e4b766195ade79037e3eb5052f35a1b97",
+    "skills/skill-orchestrator/scripts/route.py": "251744ad749b0ce2dbec6af124b3443ae791cd4cc1f8a8580d749fc54c0b0e01",
+    "skills/skill-orchestrator/SKILL.md": "9218166dd56e906d90d2c585c547de95de5801862fae589003c2880b8cd049b6",
+    "skills/trajectory-analyzer/agents/openai.yaml": "ccb155c83032382226a6c974658571258fd16211e76283dae3b7bd572316bc36",
+    "skills/trajectory-analyzer/references/RESEARCH_BASIS.md": "bb896bd5910d199ecdb96a2bcdd783612ac1eca00f4ee9cce576f080fbd6f8c6",
+    "skills/trajectory-analyzer/references/TECHNICAL_GUIDE.md": "2c6cde1a85ba38ee0f116c15f695e0d2f3974a80b04f6dec79a36b7baf927d3e",
+    "skills/trajectory-analyzer/references/USE_CASES.md": "021ee0874c1acacc1265e6c6fc25535487e96c17baec0910e28daa3cb519f140",
+    "skills/trajectory-analyzer/scripts/summarize.py": "222874bbe7c8676bda0c7ad631b630e8b2901559118d954968685666f9c18a71",
+    "skills/trajectory-analyzer/SKILL.md": "495060e5b39b81aa72263a8ff7eb0beb6b877cc43dda51a1814f06767145778c",
+    "skills/trajectory-review-engine/references/RESEARCH_BASIS.md": "1d4786eed45646cf5b42b467c75593ed3219a9134d7acd536ebef9a2063c6f76",
+    "skills/trajectory-review-engine/references/TECHNICAL_GUIDE.md": "2248d85d66b2e8fdacfcc770d3562b6f328762f9125c22aed4b93a8f2e1c449f",
+    "skills/trajectory-review-engine/references/USE_CASES.md": "f1d3490c841a0b4e836392b1aba2906d8b3f4bb605729aac83e9317f1b383487",
+    "skills/trajectory-review-engine/scripts/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583",
+    "skills/trajectory-review-engine/scripts/check.py": "7ed092ce6da7f68070e8054f5557f9138e0bfa4e521e134536c93a68bc0bcfed",
+    "skills/trajectory-review-engine/SKILL.md": "884e0091b97c7026156d79b77bc7c45a39278b83037c8f9a39f4b4bd67235284",
+    "tools/production/_contract.py": "645d7690c3d87ec646100508c48be3f9413f6e5754e889c7e49ec5e3bd3e1583"
+  },
+  "functional": [
+    {
+      "id": "H01",
+      "skill": "agent-first-harness",
+      "criterion": "Distinguish missing build, stale receipt, and no execution",
+      "expected": [
+        {
+          "build": "missing_entrypoint",
+          "test": "unverified"
+        },
+        0
+      ],
+      "actual": [
+        {
+          "build": "missing_entrypoint",
+          "test": "unverified"
+        },
+        0
+      ],
+      "met": true
+    },
+    {
+      "id": "H02",
+      "skill": "repository-context-architecture",
+      "criterion": "Detect ordinary inline links",
+      "expected": true,
+      "actual": true,
+      "met": true
+    },
+    {
+      "id": "H03",
+      "skill": "repository-context-architecture",
+      "criterion": "Detect missing valid Markdown links with titles",
+      "expected": true,
+      "actual": true,
+      "met": true
+    },
+    {
+      "id": "A01",
+      "skill": "agent-computer-interface",
+      "criterion": "Distinguish valid and malformed arguments",
+      "expected": [
+        true,
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "actual": [
+        true,
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "met": true
+    },
+    {
+      "id": "A02",
+      "skill": "agent-computer-interface",
+      "criterion": "Flag a colliding name and unactionable recovery",
+      "expected": [
+        "duplicate_tool",
+        "unactionable_error_contract"
+      ],
+      "actual": [
+        "duplicate_tool",
+        "unactionable_error_contract"
+      ],
+      "met": true
+    },
+    {
+      "id": "A10",
+      "skill": "agent-tool-interface-design",
+      "criterion": "Expose only the exact authorized intent under the byte cap",
+      "expected": [
+        "records.read"
+      ],
+      "actual": [
+        "records.read"
+      ],
+      "met": true
+    },
+    {
+      "id": "A100",
+      "skill": "agent-tool-interface-design",
+      "criterion": "Expose only the exact authorized intent under the byte cap",
+      "expected": [
+        "records.read"
+      ],
+      "actual": [
+        "records.read"
+      ],
+      "met": true
+    },
+    {
+      "id": "A1000",
+      "skill": "agent-tool-interface-design",
+      "criterion": "Expose only the exact authorized intent under the byte cap",
+      "expected": [
+        "records.read"
+      ],
+      "actual": [
+        "records.read"
+      ],
+      "met": true
+    },
+    {
+      "id": "A03",
+      "skill": "agent-tool-interface-design",
+      "criterion": "Abstain when the intended tool is unavailable",
+      "expected": "abstain",
+      "actual": "abstain",
+      "met": true
+    },
+    {
+      "id": "C01",
+      "skill": "kv-cache-aware-context",
+      "criterion": "Key order is stable, tool order is material, and no provider hit is inferred",
+      "expected": [
+        1,
+        0,
+        null
+      ],
+      "actual": [
+        1,
+        0,
+        null
+      ],
+      "met": true
+    },
+    {
+      "id": "C02",
+      "skill": "context-compaction-recovery",
+      "criterion": "Detect scope and error loss plus changed artifact",
+      "expected": [
+        "matched",
+        [
+          "constraints",
+          "errors"
+        ],
+        [
+          "resume.json"
+        ]
+      ],
+      "actual": [
+        "matched",
+        [
+          "constraints",
+          "errors"
+        ],
+        [
+          "resume.json"
+        ]
+      ],
+      "met": true
+    },
+    {
+      "id": "I01",
+      "skill": "inference-serving-architect",
+      "criterion": "Block rounding plus modeled KV pressure, without claim of measurement",
+      "expected": [
+        4096,
+        80,
+        3,
+        false,
+        false
+      ],
+      "actual": [
+        4096,
+        80,
+        3,
+        false,
+        false
+      ],
+      "met": true
+    },
+    {
+      "id": "E01",
+      "skill": "agent-evals-engineer",
+      "criterion": "Ignore textual optimism and distinguish pass estimators",
+      "expected": [
+        {
+          "pass@1": 0.75,
+          "pass@k": 1.0,
+          "pass^k": 0.5
+        },
+        true
+      ],
+      "actual": [
+        {
+          "pass@1": 0.75,
+          "pass@k": 1.0,
+          "pass^k": 0.5
+        },
+        true
+      ],
+      "met": true
+    },
+    {
+      "id": "E02",
+      "skill": "agent-evals-engineer",
+      "criterion": "Suppress macro if a trial lacks independent outcome",
+      "expected": null,
+      "actual": null,
+      "met": true
+    },
+    {
+      "id": "E03",
+      "skill": "agent-evals-engineer",
+      "criterion": "Do not award independent trial credit from reused evidence",
+      "expected": null,
+      "actual": null,
+      "met": true
+    },
+    {
+      "id": "T01",
+      "skill": "trajectory-review-engine",
+      "criterion": "Find repeated unchanged timeouts and disagreement, not causality",
+      "expected": [
+        [
+          "0",
+          "1",
+          "2"
+        ],
+        true,
+        "not_verified"
+      ],
+      "actual": [
+        [
+          "0",
+          "1",
+          "2"
+        ],
+        true,
+        "not_verified"
+      ],
+      "met": true
+    },
+    {
+      "id": "T02",
+      "skill": "trajectory-review-engine",
+      "criterion": "Detect same-operation stall despite intervening successful log reads",
+      "expected": 1,
+      "actual": 1,
+      "met": true
+    },
+    {
+      "id": "E04",
+      "skill": "evaluator-optimizer-loop",
+      "criterion": "Retain independently verified artifact and stop at budget",
+      "expected": [
+        "budget_limit",
+        0.76
+      ],
+      "actual": [
+        "budget_limit",
+        0.76
+      ],
+      "met": true
+    },
+    {
+      "id": "S01",
+      "skill": "brain-tool-runtime-separation",
+      "criterion": "Reject an injected authorization field before any effect",
+      "expected": [
+        "deny",
+        []
+      ],
+      "actual": [
+        "deny",
+        []
+      ],
+      "met": true
+    },
+    {
+      "id": "S02",
+      "skill": "capability-security-architect",
+      "criterion": "Require attenuation and a live expiry",
+      "expected": [
+        "allow",
+        "scope_expansion",
+        "expiry"
+      ],
+      "actual": [
+        "allow",
+        "scope_expansion",
+        "expiry"
+      ],
+      "met": true
+    },
+    {
+      "id": "S03",
+      "skill": "prompt-injection-boundaries",
+      "criterion": "Reject known mixed provenance at public-only export",
+      "expected": "deny",
+      "actual": "deny",
+      "met": true
+    },
+    {
+      "id": "S04",
+      "skill": "prompt-injection-boundaries",
+      "criterion": "Reject a tool-output instruction switching active control",
+      "expected": "deny",
+      "actual": "deny",
+      "met": true
+    },
+    {
+      "id": "S05",
+      "skill": "prompt-injection-boundaries",
+      "criterion": "Reject an export of a derived artifact when the proposal omits a private dependency",
+      "expected": "deny",
+      "actual": "deny",
+      "met": true
+    },
+    {
+      "id": "S08",
+      "skill": "prompt-injection-boundaries",
+      "criterion": "Hostile text persisted on disk and echoed by a tool cannot authorize export",
+      "expected": [
+        "deny",
+        []
+      ],
+      "actual": [
+        "deny",
+        []
+      ],
+      "met": true
+    },
+    {
+      "id": "S06",
+      "skill": "runtime-verification-engine",
+      "criterion": "Block at budget breach and keep valid prefix",
+      "expected": [
+        "budget_exhausted",
+        "approved",
+        [
+          "a"
+        ]
+      ],
+      "actual": [
+        "budget_exhausted",
+        "approved",
+        [
+          "a"
+        ]
+      ],
+      "met": true
+    },
+    {
+      "id": "S07",
+      "skill": "runtime-verification-engine",
+      "criterion": "Block publish with no prior approval",
+      "expected": "invalid_transition",
+      "actual": "invalid_transition",
+      "met": true
+    },
+    {
+      "id": "D01",
+      "skill": "durable-execution-engine",
+      "criterion": "Restart after effect reconciles without a duplicate",
+      "expected": [
+        1,
+        "done",
+        1
+      ],
+      "actual": [
+        1,
+        "done",
+        1
+      ],
+      "met": true
+    },
+    {
+      "id": "D02",
+      "skill": "durable-execution-engine",
+      "criterion": "Reject a concurrent recovery, then finish the first claim with exactly one effect",
+      "expected": [
+        {
+          "blocked": "operator_lock"
+        },
+        "done",
+        1,
+        []
+      ],
+      "actual": [
+        {
+          "blocked": "operator_lock"
+        },
+        "done",
+        1,
+        []
+      ],
+      "met": true
+    }
+  ],
+  "catalog_exposure": [
+    {
+      "catalog": 10,
+      "runs": 11,
+      "median_ms": 0.0168,
+      "full_contract_bytes": 1310,
+      "exposed_bytes": 50
+    },
+    {
+      "catalog": 100,
+      "runs": 11,
+      "median_ms": 0.0758,
+      "full_contract_bytes": 13999,
+      "exposed_bytes": 50
+    },
+    {
+      "catalog": 1000,
+      "runs": 11,
+      "median_ms": 0.6246,
+      "full_contract_bytes": 141798,
+      "exposed_bytes": 50
+    }
+  ],
+  "durable_concurrency_probe": {
+    "premature": {
+      "blocked": "operator_lock"
+    },
+    "final_phase": "done",
+    "effects": 1,
+    "worker_errors": []
+  },
+  "routing": {
+    "fixture_digest": "528626c745c35a75cacb14e0e750eca60608959ac722bd8db7f2d11be1f1bc1a",
+    "metrics": {
+      "cases": 81,
+      "k": 3,
+      "precision_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "unnecessary_selection_case_rate": 0.0,
+      "omission_case_rate": 0.0,
+      "restriction_check_cases": 66,
+      "restriction_check_case_rate": 1.0,
+      "exact_order_case_rate": 1.0,
+      "structured_explanation_coverage": 1.0
+    },
+    "mismatches": [],
+    "outputs": {
+      "audit-001": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-first-harness",
+            "reason": "primary requested outcome",
+            "capability": "audit_agent_harness",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Audit repository readiness for coding agents: discover build and test entrypoints, feedback, observability and worktree isolation",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-002": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-first-harness",
+            "reason": "primary requested outcome",
+            "capability": "design_agent_harness",
+            "mode": "plan",
+            "missing_inputs": [
+              "repository_manifest"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Audit repository readiness for coding agents: discover build and test entrypoints, feedback, observability and worktree isolation",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-003": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "repository-context-architecture",
+            "reason": "primary requested outcome",
+            "capability": "audit_repository_context",
+            "mode": "plan",
+            "missing_inputs": [
+              "document_map"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Map canonical repository documentation and detect broken internal links, duplicate content and stale revision markers",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-004": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "agent-first-harness": "agent-first-harness unavailable"
+        },
+        "unmet": [
+          "audit_agent_harness"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-005": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-first-harness",
+            "reason": "primary requested outcome",
+            "capability": "audit_agent_harness",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Audit repository readiness for coding agents: discover build and test entrypoints, feedback, observability and worktree isolation",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-006": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-computer-interface",
+            "reason": "primary requested outcome",
+            "capability": "lint_tool_contract",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Lint individual agent tool contracts, parameter schemas and actionable errors",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-007": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-computer-interface",
+            "reason": "primary requested outcome",
+            "capability": "design_tool_contract",
+            "mode": "plan",
+            "missing_inputs": [
+              "tool_contract"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Lint individual agent tool contracts, parameter schemas and actionable errors",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-008": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-tool-interface-design",
+            "reason": "primary requested outcome",
+            "capability": "rank_tool_catalog",
+            "mode": "plan",
+            "missing_inputs": [
+              "tool_catalog"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Design discovery, exposure budgets and composition for large agent tool catalogs",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-009": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "agent-computer-interface": "agent-computer-interface unavailable"
+        },
+        "unmet": [
+          "lint_tool_contract"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-010": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-computer-interface",
+            "reason": "primary requested outcome",
+            "capability": "lint_tool_contract",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Lint individual agent tool contracts, parameter schemas and actionable errors",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-011": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "repository-context-architecture",
+            "reason": "primary requested outcome",
+            "capability": "audit_repository_context",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Map canonical repository documentation and detect broken internal links, duplicate content and stale revision markers",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-012": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "repository-context-architecture",
+            "reason": "primary requested outcome",
+            "capability": "design_repository_context",
+            "mode": "plan",
+            "missing_inputs": [
+              "document_map"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Map canonical repository documentation and detect broken internal links, duplicate content and stale revision markers",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-013": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-first-harness",
+            "reason": "primary requested outcome",
+            "capability": "audit_agent_harness",
+            "mode": "plan",
+            "missing_inputs": [
+              "repository_manifest"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Audit repository readiness for coding agents: discover build and test entrypoints, feedback, observability and worktree isolation",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-014": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "repository-context-architecture": "repository-context-architecture unavailable"
+        },
+        "unmet": [
+          "audit_repository_context"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-015": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "repository-context-architecture",
+            "reason": "primary requested outcome",
+            "capability": "audit_repository_context",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Map canonical repository documentation and detect broken internal links, duplicate content and stale revision markers",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-016": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "kv-cache-aware-context",
+            "reason": "primary requested outcome",
+            "capability": "analyze_context_prefix",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Compare serialized context prefixes and provider cache telemetry",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-017": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "kv-cache-aware-context",
+            "reason": "primary requested outcome",
+            "capability": "design_cache_experiment",
+            "mode": "plan",
+            "missing_inputs": [
+              "request_pair"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Compare serialized context prefixes and provider cache telemetry",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-018": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "context-compaction-recovery",
+            "reason": "primary requested outcome",
+            "capability": "verify_context_restore",
+            "mode": "plan",
+            "missing_inputs": [
+              "context_checkpoint"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Validate restorable context checkpoints with decisions, constraints, evidence and artifact digests",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-019": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "kv-cache-aware-context": "kv-cache-aware-context unavailable"
+        },
+        "unmet": [
+          "analyze_context_prefix"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-020": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "kv-cache-aware-context",
+            "reason": "primary requested outcome",
+            "capability": "analyze_context_prefix",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Compare serialized context prefixes and provider cache telemetry",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-021": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "context-compaction-recovery",
+            "reason": "primary requested outcome",
+            "capability": "verify_context_restore",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Validate restorable context checkpoints with decisions, constraints, evidence and artifact digests",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-022": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "context-compaction-recovery",
+            "reason": "primary requested outcome",
+            "capability": "design_context_checkpoint",
+            "mode": "plan",
+            "missing_inputs": [
+              "context_checkpoint"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Validate restorable context checkpoints with decisions, constraints, evidence and artifact digests",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-023": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "durable-execution-engine",
+            "reason": "primary requested outcome",
+            "capability": "plan_durable_recovery",
+            "mode": "plan",
+            "missing_inputs": [
+              "journal_snapshot"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Choose bounded retry, reconciliation and compensation from a persisted execution snapshot",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-024": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "context-compaction-recovery": "context-compaction-recovery unavailable"
+        },
+        "unmet": [
+          "verify_context_restore"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-025": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "context-compaction-recovery",
+            "reason": "primary requested outcome",
+            "capability": "verify_context_restore",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Validate restorable context checkpoints with decisions, constraints, evidence and artifact digests",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-026": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "inference-serving-architect",
+            "reason": "primary requested outcome",
+            "capability": "estimate_inference_capacity",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Estimate self-hosted LLM serving memory and design comparable prefill/decode experiments",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-027": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "inference-serving-architect",
+            "reason": "primary requested outcome",
+            "capability": "design_inference_topology",
+            "mode": "plan",
+            "missing_inputs": [
+              "serving_config"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Estimate self-hosted LLM serving memory and design comparable prefill/decode experiments",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-028": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "kv-cache-aware-context",
+            "reason": "primary requested outcome",
+            "capability": "analyze_context_prefix",
+            "mode": "plan",
+            "missing_inputs": [
+              "request_pair"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Compare serialized context prefixes and provider cache telemetry",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-029": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "inference-serving-architect": "inference-serving-architect unavailable"
+        },
+        "unmet": [
+          "estimate_inference_capacity"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-030": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "inference-serving-architect",
+            "reason": "primary requested outcome",
+            "capability": "estimate_inference_capacity",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Estimate self-hosted LLM serving memory and design comparable prefill/decode experiments",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "authorization_required"
+      },
+      "audit-031": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-evals-engineer",
+            "reason": "primary requested outcome",
+            "capability": "score_agent_trials",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Build and score structured agent trials against independent end states; export human review and import model grader observations",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-032": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-evals-engineer",
+            "reason": "primary requested outcome",
+            "capability": "design_agent_evaluation",
+            "mode": "plan",
+            "missing_inputs": [
+              "trial_records"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Build and score structured agent trials against independent end states; export human review and import model grader observations",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-033": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "experiment-evaluator",
+            "reason": "primary requested outcome",
+            "capability": "compare_trials",
+            "mode": "plan",
+            "missing_inputs": [
+              "paired_trials",
+              "protocol"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Compare variants under a frozen protocol",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-034": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "agent-evals-engineer": "agent-evals-engineer unavailable"
+        },
+        "unmet": [
+          "score_agent_trials"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-035": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-evals-engineer",
+            "reason": "primary requested outcome",
+            "capability": "score_agent_trials",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Build and score structured agent trials against independent end states; export human review and import model grader observations",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-036": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "trajectory-review-engine",
+            "reason": "primary requested outcome",
+            "capability": "review_trajectory_patterns",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Review chronological agent events for invalid calls, stalled loops and disagreement with authoritative outcomes",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-037": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "trajectory-review-engine",
+            "reason": "primary requested outcome",
+            "capability": "design_trajectory_replay",
+            "mode": "plan",
+            "missing_inputs": [
+              "structured_trace"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Review chronological agent events for invalid calls, stalled loops and disagreement with authoritative outcomes",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-038": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "trajectory-analyzer",
+            "reason": "primary requested outcome",
+            "capability": "diagnose_trace",
+            "mode": "plan",
+            "missing_inputs": [
+              "trace"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Reconstruct an observed run and isolate divergence",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-039": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "trajectory-review-engine": "trajectory-review-engine unavailable"
+        },
+        "unmet": [
+          "review_trajectory_patterns"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-040": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "trajectory-review-engine",
+            "reason": "primary requested outcome",
+            "capability": "review_trajectory_patterns",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Review chronological agent events for invalid calls, stalled loops and disagreement with authoritative outcomes",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-041": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "evaluator-optimizer-loop",
+            "reason": "primary requested outcome",
+            "capability": "decide_refinement_loop",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Control iterative revision of one artifact with a frozen rubric, independent verifier, bounded cost and stopping criteria",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-042": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "evaluator-optimizer-loop",
+            "reason": "primary requested outcome",
+            "capability": "design_refinement_loop",
+            "mode": "plan",
+            "missing_inputs": [
+              "iteration_history"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Control iterative revision of one artifact with a frozen rubric, independent verifier, bounded cost and stopping criteria",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-043": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "evolutionary-optimizer",
+            "reason": "primary requested outcome",
+            "capability": "rank_variants",
+            "mode": "plan",
+            "missing_inputs": [
+              "development_trials"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Select feasible nondominated variants",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-044": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "evaluator-optimizer-loop": "evaluator-optimizer-loop unavailable"
+        },
+        "unmet": [
+          "decide_refinement_loop"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-045": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "evaluator-optimizer-loop",
+            "reason": "primary requested outcome",
+            "capability": "decide_refinement_loop",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Control iterative revision of one artifact with a frozen rubric, independent verifier, bounded cost and stopping criteria",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-046": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "durable-execution-engine",
+            "reason": "primary requested outcome",
+            "capability": "plan_durable_recovery",
+            "mode": "plan",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Choose bounded retry, reconciliation and compensation from a persisted execution snapshot",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-047": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "durable-execution-engine",
+            "reason": "primary requested outcome",
+            "capability": "design_durable_runtime",
+            "mode": "plan",
+            "missing_inputs": [
+              "journal_snapshot"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Choose bounded retry, reconciliation and compensation from a persisted execution snapshot",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-048": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "long-horizon-executor",
+            "reason": "primary requested outcome",
+            "capability": "design_checkpoints",
+            "mode": "plan",
+            "missing_inputs": [
+              "checkpoint"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Resume verified milestones and reconcile incomplete effects",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-049": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "durable-execution-engine": "durable-execution-engine unavailable"
+        },
+        "unmet": [
+          "plan_durable_recovery"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-050": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "durable-execution-engine",
+            "reason": "primary requested outcome",
+            "capability": "plan_durable_recovery",
+            "mode": "plan",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Choose bounded retry, reconciliation and compensation from a persisted execution snapshot",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-051": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "brain-tool-runtime-separation",
+            "reason": "primary requested outcome",
+            "capability": "validate_execution_plan",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Validate typed model proposals against a trusted executor and run a fake-tool demonstration",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-052": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "brain-tool-runtime-separation",
+            "reason": "primary requested outcome",
+            "capability": "design_model_executor_boundary",
+            "mode": "plan",
+            "missing_inputs": [
+              "action_plan"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Validate typed model proposals against a trusted executor and run a fake-tool demonstration",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-053": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "runtime-guardian",
+            "reason": "primary requested outcome",
+            "capability": "simulate_action_policy",
+            "mode": "plan",
+            "missing_inputs": [
+              "action",
+              "policy"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Check an external authorization boundary",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-054": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "brain-tool-runtime-separation": "brain-tool-runtime-separation unavailable"
+        },
+        "unmet": [
+          "validate_execution_plan"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-055": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "brain-tool-runtime-separation",
+            "reason": "primary requested outcome",
+            "capability": "validate_execution_plan",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Validate typed model proposals against a trusted executor and run a fake-tool demonstration",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-056": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-tool-interface-design",
+            "reason": "primary requested outcome",
+            "capability": "rank_tool_catalog",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Design discovery, exposure budgets and composition for large agent tool catalogs",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-057": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-tool-interface-design",
+            "reason": "primary requested outcome",
+            "capability": "design_tool_discovery",
+            "mode": "plan",
+            "missing_inputs": [
+              "tool_catalog"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Design discovery, exposure budgets and composition for large agent tool catalogs",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-058": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-computer-interface",
+            "reason": "primary requested outcome",
+            "capability": "lint_tool_contract",
+            "mode": "plan",
+            "missing_inputs": [
+              "tool_contract"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Lint individual agent tool contracts, parameter schemas and actionable errors",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "not_requested"
+      },
+      "audit-059": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "agent-tool-interface-design": "agent-tool-interface-design unavailable"
+        },
+        "unmet": [
+          "rank_tool_catalog"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-060": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "agent-tool-interface-design",
+            "reason": "primary requested outcome",
+            "capability": "rank_tool_catalog",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Design discovery, exposure budgets and composition for large agent tool catalogs",
+            "cost_units": 2
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 2,
+        "dispatch": "authorization_required"
+      },
+      "audit-061": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "capability-security-architect",
+            "reason": "primary requested outcome",
+            "capability": "check_capability_delegation",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Check exact capability attenuation and proposed access before issuance",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-062": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "capability-security-architect",
+            "reason": "primary requested outcome",
+            "capability": "design_capability_policy",
+            "mode": "plan",
+            "missing_inputs": [
+              "capability_policy"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Check exact capability attenuation and proposed access before issuance",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-063": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "prompt-injection-boundaries",
+            "reason": "primary requested outcome",
+            "capability": "check_information_flow",
+            "mode": "plan",
+            "missing_inputs": [
+              "flow_policy"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Enforce a demonstration trust boundary for labeled external data and privileged sinks",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-064": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "capability-security-architect": "capability-security-architect unavailable"
+        },
+        "unmet": [
+          "check_capability_delegation"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-065": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "capability-security-architect",
+            "reason": "primary requested outcome",
+            "capability": "check_capability_delegation",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Check exact capability attenuation and proposed access before issuance",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "authorization_required"
+      },
+      "audit-066": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "prompt-injection-boundaries",
+            "reason": "primary requested outcome",
+            "capability": "check_information_flow",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Enforce a demonstration trust boundary for labeled external data and privileged sinks",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-067": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "prompt-injection-boundaries",
+            "reason": "primary requested outcome",
+            "capability": "design_injection_boundaries",
+            "mode": "plan",
+            "missing_inputs": [
+              "flow_policy"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Enforce a demonstration trust boundary for labeled external data and privileged sinks",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-068": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "capability-security-architect",
+            "reason": "primary requested outcome",
+            "capability": "check_capability_delegation",
+            "mode": "plan",
+            "missing_inputs": [
+              "capability_policy"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Check exact capability attenuation and proposed access before issuance",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-069": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "prompt-injection-boundaries": "prompt-injection-boundaries unavailable"
+        },
+        "unmet": [
+          "check_information_flow"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-070": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "prompt-injection-boundaries",
+            "reason": "primary requested outcome",
+            "capability": "check_information_flow",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Enforce a demonstration trust boundary for labeled external data and privileged sinks",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "authorization_required"
+      },
+      "audit-071": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "runtime-verification-engine",
+            "reason": "primary requested outcome",
+            "capability": "verify_runtime_transitions",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Evaluate deterministic runtime state transitions, sequence IDs and budget invariants before an action advances",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-072": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "runtime-verification-engine",
+            "reason": "primary requested outcome",
+            "capability": "design_runtime_monitor",
+            "mode": "plan",
+            "missing_inputs": [
+              "runtime_event_stream"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Evaluate deterministic runtime state transitions, sequence IDs and budget invariants before an action advances",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "offline",
+          "plan_only"
+        ],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      },
+      "audit-073": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "process-verifier",
+            "reason": "primary requested outcome",
+            "capability": "verify_acceptance",
+            "mode": "plan",
+            "missing_inputs": [
+              "acceptance_contract",
+              "observations"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Verify independent evidence against fixed gates",
+            "cost_units": 1
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 1,
+        "dispatch": "not_requested"
+      },
+      "audit-074": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_eligible_skill",
+        "selected": [],
+        "excluded": {
+          "runtime-verification-engine": "runtime-verification-engine unavailable"
+        },
+        "unmet": [
+          "verify_runtime_transitions"
+        ],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-075": {
+        "mode": "execute",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "runtime-verification-engine",
+            "reason": "primary requested outcome",
+            "capability": "verify_runtime_transitions",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Evaluate deterministic runtime state transitions, sequence IDs and budget invariants before an action advances",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "authorization_required"
+      },
+      "audit-076": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_specialized_outcome",
+        "selected": [],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-077": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_specialized_outcome",
+        "selected": [],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-078": {
+        "mode": "recommend",
+        "decision": "abstain",
+        "decision_reason": "no_specialized_outcome",
+        "selected": [],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 0,
+        "dispatch": "not_requested"
+      },
+      "audit-079": {
+        "mode": "explicit",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "inference-serving-architect",
+            "reason": "explicit user selection",
+            "capability": "estimate_inference_capacity",
+            "mode": "plan",
+            "missing_inputs": [
+              "serving_config"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Estimate self-hosted LLM serving memory and design comparable prefill/decode experiments",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "not_dispatched"
+      },
+      "audit-080": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "matched_requested_outcome",
+        "selected": [
+          {
+            "skill": "brain-tool-runtime-separation",
+            "reason": "primary requested outcome",
+            "capability": "validate_execution_plan",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Validate typed model proposals against a trusted executor and run a fake-tool demonstration",
+            "cost_units": 2
+          },
+          {
+            "skill": "prompt-injection-boundaries",
+            "reason": "distinct secondary outcome",
+            "capability": "check_information_flow",
+            "mode": "analyze",
+            "missing_inputs": [],
+            "optional_tools_available": [],
+            "outcome": "Enforce a demonstration trust boundary for labeled external data and privileged sinks",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {},
+        "unmet": [],
+        "constraints": [
+          "read_only"
+        ],
+        "cost_units": 5,
+        "dispatch": "not_requested"
+      },
+      "audit-081": {
+        "mode": "recommend",
+        "decision": "select",
+        "decision_reason": "partial_match",
+        "selected": [
+          {
+            "skill": "prompt-injection-boundaries",
+            "reason": "primary requested outcome",
+            "capability": "design_injection_boundaries",
+            "mode": "plan",
+            "missing_inputs": [
+              "flow_policy"
+            ],
+            "optional_tools_available": [],
+            "outcome": "Enforce a demonstration trust boundary for labeled external data and privileged sinks",
+            "cost_units": 3
+          }
+        ],
+        "excluded": {
+          "inference-serving-architect": "selection exceeds budget or skill limit"
+        },
+        "unmet": [
+          "design_inference_topology"
+        ],
+        "constraints": [],
+        "cost_units": 3,
+        "dispatch": "not_requested"
+      }
+    }
+  },
+  "live_model_trials": "not_run",
+  "live_gpu_trials": "not_run"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "root": ".",
+  "revision": "r2",
+  "documents": [
+    {
+      "path": "docs/overview.md",
+      "topic": "system",
+      "observed_revision": "r1"
+    },
+    {
+      "path": "docs/copy.md",
+      "topic": "system"
+    }
+  ]
+}

@@ -134,7 +134,7 @@ def route(request, skills):
     elif mode in ("execute", "explicit") and "available" in request and "plan_only" not in constraints:
         dispatchable = all(row["mode"] == "analyze" for row in selected.values())
         dispatch = ("host_may_dispatch_within_scope"
-                    if authorized and selected and not unmet and (mode == "explicit" or dispatchable)
+                    if authorized and selected and not unmet and dispatchable
                     else "not_dispatched")
     return {"mode": mode, "decision": "select" if selected else "abstain",
             "decision_reason": ("matched_requested_outcome" if selected and not unmet else

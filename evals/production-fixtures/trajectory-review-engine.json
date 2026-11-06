@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "id": "t1",
+      "operation": "publish",
+      "state": "unchanged",
+      "status": "timeout"
+    },
+    {
+      "id": "t2",
+      "operation": "publish",
+      "state": "unchanged",
+      "status": "invalid"
+    },
+    {
+      "id": "t3",
+      "operation": "publish",
+      "state": "unchanged",
+      "status": "timeout"
+    }
+  ],
+  "claimed_success": true,
+  "observed_success": false
+}

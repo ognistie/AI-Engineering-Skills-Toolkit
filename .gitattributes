@@ -1,3 +1,4 @@
 * text=auto
 *.sh text eol=lf
 skills/** text=auto eol=lf
+tools/production/_contract.py text eol=lf

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "k": 2,
+  "tasks": [
+    {
+      "id": "r",
+      "expected": {
+        "count": 1
+      },
+      "planned_trial_ids": [
+        "t0",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "trials": [
+        {
+          "id": "t0",
+          "outcome_ref": "ledger-0",
+          "judge": {
+            "grader": "toy-v1",
+            "pass": true
+          }
+        },
+        {
+          "id": "t1",
+          "outcome_ref": "ledger-1",
+          "judge": {
+            "grader": "toy-v1",
+            "pass": true
+          }
+        },
+        {
+          "id": "t2",
+          "outcome_ref": "ledger-2",
+          "judge": {
+            "grader": "toy-v1",
+            "pass": true
+          }
+        },
+        {
+          "id": "t3",
+          "outcome_ref": "ledger-3",
+          "judge": {
+            "grader": "toy-v1",
+            "pass": true
+          }
+        }
+      ]
+    }
+  ],
+  "trusted_outcomes": {
+    "ledger-0": {
+      "task_id": "r",
+      "trial_id": "t0",
+      "run_id": "independent-run-0",
+      "observed": {
+        "count": 1
+      }
+    },
+    "ledger-1": {
+      "task_id": "r",
+      "trial_id": "t1",
+      "run_id": "independent-run-1",
+      "observed": {
+        "count": 1
+      }
+    },
+    "ledger-2": {
+      "task_id": "r",
+      "trial_id": "t2",
+      "run_id": "independent-run-2",
+      "observed": {
+        "count": 1
+      }
+    },
+    "ledger-3": {
+      "task_id": "r",
+      "trial_id": "t3",
+      "run_id": "independent-run-3",
+      "observed": {
+        "count": 0
+      }
+    }
+  }
+}
