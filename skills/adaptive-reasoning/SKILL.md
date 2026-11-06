@@ -3,7 +3,7 @@ name: adaptive-reasoning
 description: "Choose how much external work an AI workflow needs using evidence, difficulty, and fixed budgets. Use for verifier-guided escalation, stopping rules, or allocating attempts; this does not control hidden model reasoning."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Adaptive Reasoning

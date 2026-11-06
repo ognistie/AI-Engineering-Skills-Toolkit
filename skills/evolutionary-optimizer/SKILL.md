@@ -3,7 +3,7 @@ name: evolutionary-optimizer
 description: "Search isolated variants using scored trials, hard constraints, and a Pareto archive. Use for iterative algorithm or prompt optimization with a fixed objective; do not apply winners automatically."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Evolutionary Optimizer

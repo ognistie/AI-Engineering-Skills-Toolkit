@@ -3,7 +3,7 @@ name: process-verifier
 description: "Verify an AI or engineering workflow against checkpoints and independent evidence. Use for acceptance gates, audit trails, unsupported completion claims, or verifier design; use experiment evaluation for baseline comparisons."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Process Verifier

@@ -3,7 +3,7 @@ name: mechanistic-interpretability
 description: "Design or analyze activation-patching, sparse feature, or circuit experiments on neural models. Use when inspecting internal activations or designing interventions; agent logs alone are insufficient."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Mechanistic Interpretability

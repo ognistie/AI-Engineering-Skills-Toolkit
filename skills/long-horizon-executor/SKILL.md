@@ -3,7 +3,7 @@ name: long-horizon-executor
 description: "Plan and resume multi-stage engineering work using verified milestones, durable checkpoints and bounded recovery. Use for interrupted runs or replay-safe workflows, not a one-off task."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Long Horizon Executor

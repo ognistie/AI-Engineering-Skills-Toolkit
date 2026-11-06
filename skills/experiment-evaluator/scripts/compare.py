@@ -3,6 +3,7 @@ import argparse
 import json
 import math
 from pathlib import Path
+import random
 
 
 def number(value, label, minimum=0, maximum=None):
@@ -23,6 +24,16 @@ def compare(protocol, observations):
     known = set(keys)
     if len(known) != len(keys):
         raise ValueError("Duplicate protocol trial IDs")
+    groups = protocol.get("trial_groups")
+    if "trial_groups" in protocol and (
+            not isinstance(groups, dict) or set(groups) != known
+            or any(type(group) is not str or not group.strip() for group in groups.values())):
+        raise ValueError("trial_groups must map every planned trial to a task cluster")
+    if groups and len(set(groups.values())) > 512:
+        raise ValueError("At most 512 task clusters for the optional interval")
+    bootstrap_seed = protocol.get("bootstrap_seed", 0)
+    if type(bootstrap_seed) is not int:
+        raise ValueError("bootstrap_seed must be an integer")
     limits = protocol["gates"]
     floor = number(limits["min_candidate_success"], "success floor", 0, 1)
     delta = number(limits["min_success_delta"], "success delta", -1, 1)
@@ -59,8 +70,52 @@ def compare(protocol, observations):
              "success_delta": effects["success_rate"] + 1e-12 >= delta,
              "latency_cap": candidate["p95_ms"] <= p95_max,
              "cost_cap": candidate["mean_cost"] <= cost_max}
-    return report | {"status": "passed" if all(gates.values()) else "failed",
-                     "baseline": baseline, "candidate": candidate, "delta": effects, "gates": gates}
+    result = report | {"status": "passed" if all(gates.values()) else "failed",
+                       "baseline": baseline, "candidate": candidate, "delta": effects, "gates": gates}
+    if groups:
+        paired_effects = {}
+        for key in keys:
+            change = (int(variants["candidate"][key][0] == "success")
+                      - int(variants["baseline"][key][0] == "success"))
+            paired_effects.setdefault(groups[key], []).append(change)
+        values = [math.fsum(paired_effects[g]) / len(paired_effects[g]) for g in sorted(paired_effects)]
+        result["task_cluster_success"] = cluster_interval(values, bootstrap_seed)
+    return result
+
+
+def cluster_interval(values, seed):
+    n = len(values)
+    result = {"clusters": n, "equal_task_delta": math.fsum(values) / n, "interval_95": None,
+              "status": "insufficient_clusters"}
+    if n < 8:
+        return result
+    rng = random.Random(seed)
+    draws = 2_000
+    samples = sorted(math.fsum(rng.choices(values, k=n)) / n for _ in range(draws))
+    return result | {"interval_95": [samples[49], samples[1949]], "seed": seed, "draws": draws,
+                     "status": "percentile_cluster_bootstrap"}
+
+
+def read_json(path):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError(f"Duplicate JSON key: {key}")
+            result[key] = value
+        return result
+
+    def real(token):
+        value = float(token)
+        if not -float("inf") < value < float("inf"):
+            raise ValueError("Non-finite JSON number")
+        return value
+
+    with path.open("rb") as stream:
+        data = stream.read(2_000_001)
+    if len(data) > 2_000_000:
+        raise ValueError("JSON input exceeds 2 MB")
+    return json.loads(data, object_pairs_hook=pairs, parse_float=real, parse_constant=real)
 
 
 def main():
@@ -69,8 +124,8 @@ def main():
     parser.add_argument("observations", type=Path)
     args = parser.parse_args()
     try:
-        report = compare(*(json.loads(path.read_text(encoding="utf-8")) for path in (args.protocol, args.observations)))
-    except (ValueError, TypeError, KeyError, OSError, OverflowError) as exc:
+        report = compare(*(read_json(path) for path in (args.protocol, args.observations)))
+    except (ValueError, TypeError, KeyError, OSError, OverflowError, RecursionError) as exc:
         parser.exit(2, f"Invalid experiment: {exc}\n")
     print(json.dumps(report, indent=2))
     raise SystemExit(0 if report["status"] == "passed" else 1)

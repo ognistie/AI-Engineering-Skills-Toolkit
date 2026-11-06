@@ -62,13 +62,35 @@ def summarize(document):
             "chronology": [row["id"] for row in order]}
 
 
+def read_json(path):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError(f"Duplicate JSON key: {key}")
+            result[key] = value
+        return result
+
+    def real(token):
+        value = float(token)
+        if not -float("inf") < value < float("inf"):
+            raise ValueError("Non-finite JSON number")
+        return value
+
+    with path.open("rb") as stream:
+        data = stream.read(2_000_001)
+    if len(data) > 2_000_000:
+        raise ValueError("JSON input exceeds 2 MB")
+    return json.loads(data, object_pairs_hook=pairs, parse_float=real, parse_constant=real)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("trace", type=Path)
     args = parser.parse_args()
     try:
-        result = summarize(json.loads(args.trace.read_text(encoding="utf-8")))
-    except (ValueError, TypeError, KeyError, OSError) as exc:
+        result = summarize(read_json(args.trace))
+    except (ValueError, TypeError, KeyError, OSError, RecursionError) as exc:
         parser.exit(2, f"Invalid trace: {exc}\n")
     print(json.dumps(result, indent=2))
 

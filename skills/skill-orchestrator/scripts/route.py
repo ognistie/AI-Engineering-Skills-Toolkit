@@ -114,12 +114,15 @@ def route(request, skills):
         return any(propose(name, priority, cap) for name in matches)
 
     if explicit:
-        ready = propose(explicit, "explicit user selection", primary)
+        capabilities = skills.get(explicit, {}).get("capabilities", [])
+        ready = propose(explicit, "explicit user selection", primary if primary in capabilities else None)
     else:
         ready = match(primary, "primary requested outcome")
     unmet = []
     if not ready and (explicit or primary):
         unmet.append(primary or explicit)
+    if ready and explicit and primary and not any(primary in skills[name]["capabilities"] for name in selected):
+        unmet.append(primary)
     if ready:
         for cap in secondary:
             if not match(cap, "distinct secondary outcome"):
@@ -134,8 +137,33 @@ def route(request, skills):
                     if authorized and selected and not unmet and (mode == "explicit" or dispatchable)
                     else "not_dispatched")
     return {"mode": mode, "decision": "select" if selected else "abstain",
+            "decision_reason": ("matched_requested_outcome" if selected and not unmet else
+                                "partial_match" if selected else
+                                "no_eligible_skill" if unmet else "no_specialized_outcome"),
             "selected": list(selected.values()), "excluded": excluded, "unmet": unmet,
             "constraints": sorted(constraints), "cost_units": used, "dispatch": dispatch}
+
+
+def read_json(path):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError(f"Duplicate JSON key: {key}")
+            result[key] = value
+        return result
+
+    def real(token):
+        value = float(token)
+        if not -float("inf") < value < float("inf"):
+            raise ValueError("Non-finite JSON number")
+        return value
+
+    with path.open("rb") as stream:
+        data = stream.read(2_000_001)
+    if len(data) > 2_000_000:
+        raise ValueError("JSON input exceeds 2 MB")
+    return json.loads(data, object_pairs_hook=pairs, parse_float=real, parse_constant=real)
 
 
 def main():
@@ -143,9 +171,9 @@ def main():
     parser.add_argument("request", type=Path)
     args = parser.parse_args()
     try:
-        catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
-        result = route(json.loads(args.request.read_text(encoding="utf-8")), catalog["skills"])
-    except (ValueError, TypeError, KeyError, OSError) as exc:
+        catalog = read_json(CATALOG)
+        result = route(read_json(args.request), catalog["skills"])
+    except (ValueError, TypeError, KeyError, OSError, RecursionError) as exc:
         parser.exit(2, f"Invalid routing input: {exc}\n")
     print(json.dumps(result, ensure_ascii=True, indent=2))
 

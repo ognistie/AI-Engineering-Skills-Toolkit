@@ -55,7 +55,7 @@ def validate():
         if deps & conflicts or (deps | conflicts) - (skills.keys() - {name}):
             raise ValueError(f"Invalid dependency or conflict: {name}")
         folder = root / name
-        files = tree_files(folder, source=True)
+        files = tree_files(folder)
         parts = files["SKILL.md"].read_text(encoding="utf-8").splitlines()
         if not parts or parts[0] != "---" or "---" not in parts[1:]:
             raise ValueError(f"No YAML frontmatter: {name}")

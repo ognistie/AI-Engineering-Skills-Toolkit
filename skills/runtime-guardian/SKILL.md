@@ -3,7 +3,7 @@ name: runtime-guardian
 description: "Design and test an external policy gate for AI tool actions. Use for action authorization, scope checks, approvals, replay resistance, or audit records; skill text is not a security barrier."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Runtime Guardian

@@ -1,0 +1,315 @@
+{
+  "route-01": {
+    "skills": [
+      "trajectory-analyzer"
+    ]
+  },
+  "route-02": {
+    "skills": [
+      "trajectory-analyzer"
+    ]
+  },
+  "route-03": {
+    "skills": [
+      "trajectory-analyzer"
+    ]
+  },
+  "route-04": {
+    "skills": [
+      "trajectory-analyzer"
+    ]
+  },
+  "route-05": {
+    "skills": [
+      "process-verifier"
+    ],
+    "note": "The expected r7 binary supplies the criterion. A verdict requires the independent cluster observation."
+  },
+  "route-06": {
+    "skills": [
+      "process-verifier"
+    ]
+  },
+  "route-07": {
+    "skills": [
+      "process-verifier"
+    ]
+  },
+  "route-08": {
+    "skills": [
+      "process-verifier"
+    ]
+  },
+  "route-09": {
+    "skills": [
+      "experiment-evaluator"
+    ]
+  },
+  "route-10": {
+    "skills": [
+      "experiment-evaluator"
+    ],
+    "note": "Shared trial IDs imply paired analysis. Use the actual trial records before drawing a comparison."
+  },
+  "route-11": {
+    "skills": [
+      "experiment-evaluator"
+    ]
+  },
+  "route-12": {
+    "skills": [
+      "experiment-evaluator"
+    ]
+  },
+  "route-13": {
+    "skills": [
+      "research-orchestrator"
+    ]
+  },
+  "route-14": {
+    "skills": [
+      "research-orchestrator"
+    ],
+    "note": "The question is explicit. Source collection depends on evidence or access being available."
+  },
+  "route-15": {
+    "skills": [
+      "research-orchestrator"
+    ]
+  },
+  "route-16": {
+    "skills": [
+      "research-orchestrator"
+    ]
+  },
+  "route-17": {
+    "skills": []
+  },
+  "route-18": {
+    "skills": []
+  },
+  "route-19": {
+    "skills": []
+  },
+  "route-20": {
+    "skills": []
+  },
+  "route-21": {
+    "skills": []
+  },
+  "route-22": {
+    "skills": []
+  },
+  "route-23": {
+    "skills": []
+  },
+  "route-24": {
+    "skills": []
+  },
+  "route-25": {
+    "skills": [
+      "trajectory-analyzer",
+      "process-verifier"
+    ],
+    "note": "Reconstruct the trajectory and independently count the effect in the ledger."
+  },
+  "route-26": {
+    "skills": [
+      "experiment-evaluator",
+      "trajectory-analyzer"
+    ],
+    "note": "Establish the regression from paired runs before explaining it from the trace."
+  },
+  "route-27": {
+    "skills": [
+      "research-orchestrator",
+      "experiment-evaluator"
+    ]
+  },
+  "route-28": {
+    "skills": [
+      "process-verifier"
+    ],
+    "note": "With one slot and no stated priority, retain the first request and defer the additional vendor research."
+  },
+  "route-29": {
+    "skills": [],
+    "note": "The trial-comparison skill costs three units and the hard budget is one."
+  },
+  "route-30": {
+    "skills": [],
+    "note": "The matching analyzer is unavailable. The available verifier cannot substitute."
+  },
+  "route-31": {
+    "skills": [
+      "process-verifier"
+    ],
+    "note": "Honor the explicit choice in planning mode without executing a check."
+  },
+  "route-32": {
+    "skills": [
+      "research-orchestrator"
+    ],
+    "note": "Honor the explicit choice for an offline plan. Network availability supplies no permission."
+  },
+  "route-33": {
+    "skills": []
+  },
+  "route-34": {
+    "skills": [],
+    "note": "For the requested execution, dispatch is unauthorized. A recommendation-only interpretation could identify trajectory-analyzer without dispatch."
+  },
+  "route-35": {
+    "skills": [
+      "trajectory-analyzer"
+    ],
+    "note": "The authorized operation is local, read-only analysis of the supplied sanitized trace."
+  },
+  "route-36": {
+    "skills": [],
+    "note": "The comparison skill is moderate risk, above the low ceiling. Dispatch authorization is also absent."
+  },
+  "route-37": {
+    "skills": [
+      "mechanistic-interpretability"
+    ],
+    "note": "The neural-circuit mediation question favors intervention design. A causal result requires measurements."
+  },
+  "route-38": {
+    "skills": [
+      "experiment-evaluator"
+    ]
+  },
+  "route-39": {
+    "skills": [
+      "trajectory-analyzer"
+    ]
+  },
+  "route-40": {
+    "skills": [
+      "research-orchestrator"
+    ]
+  },
+  "route-41": {
+    "skills": [
+      "adaptive-reasoning"
+    ]
+  },
+  "route-42": {
+    "skills": [
+      "adaptive-reasoning"
+    ]
+  },
+  "route-43": {
+    "skills": [
+      "long-horizon-executor"
+    ],
+    "note": "Use the supplied checkpoint to reconcile the missing receipt before any repeat operation."
+  },
+  "route-44": {
+    "skills": [
+      "long-horizon-executor"
+    ]
+  },
+  "route-45": {
+    "skills": [
+      "multi-agent-router"
+    ],
+    "note": "Select eligible independent work within the budget. A routing decision alone is distinct from dispatch."
+  },
+  "route-46": {
+    "skills": [
+      "multi-agent-router"
+    ]
+  },
+  "route-47": {
+    "skills": [
+      "runtime-guardian"
+    ]
+  },
+  "route-48": {
+    "skills": [
+      "runtime-guardian"
+    ]
+  },
+  "route-49": {
+    "skills": [
+      "evolutionary-optimizer"
+    ]
+  },
+  "route-50": {
+    "skills": [
+      "evolutionary-optimizer"
+    ]
+  },
+  "route-51": {
+    "skills": [
+      "hypothesis-lab"
+    ]
+  },
+  "route-52": {
+    "skills": [
+      "hypothesis-lab"
+    ]
+  },
+  "route-53": {
+    "skills": [
+      "mechanistic-interpretability"
+    ]
+  },
+  "route-54": {
+    "skills": [
+      "mechanistic-interpretability"
+    ],
+    "note": "Keep the design conditional on activation intervention access. The prompt rules out circuit conclusions from logs."
+  },
+  "route-55": {
+    "skills": [
+      "agentic-rl-lab"
+    ]
+  },
+  "route-56": {
+    "skills": [
+      "agentic-rl-lab"
+    ]
+  },
+  "route-57": {
+    "skills": []
+  },
+  "route-58": {
+    "skills": []
+  },
+  "route-59": {
+    "skills": [],
+    "note": "The explicit absence of a checkpoint prevents an executable resume. A recommendation-only interpretation could identify long-horizon-executor pending the checkpoint."
+  },
+  "route-60": {
+    "skills": [
+      "long-horizon-executor",
+      "process-verifier"
+    ],
+    "note": "Reconcile checkpoint state before verifying final acceptance independently."
+  },
+  "route-61": {
+    "skills": [
+      "experiment-evaluator"
+    ],
+    "note": "The request compares existing paired trials."
+  },
+  "route-62": {
+    "skills": [
+      "trajectory-analyzer"
+    ]
+  },
+  "route-63": {
+    "skills": [],
+    "note": "The RL skill is unavailable. The available evaluator cannot substitute for rollout scoring."
+  },
+  "route-64": {
+    "skills": [
+      "multi-agent-router",
+      "runtime-guardian"
+    ],
+    "note": "The graph supplies the batch selection input. Plan the external authorization separately before any action."
+  }
+}

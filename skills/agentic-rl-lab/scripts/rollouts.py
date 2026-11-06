@@ -20,6 +20,11 @@ def analyze(doc):
     if (not isinstance(actions, list) or not actions or any(type(v) is not str or not v for v in actions)
         or len(set(actions)) != len(actions)):
         raise ValueError("Expected unique allowed actions")
+    success_states = config.get("success_states")
+    if "success_states" in config and (
+            not isinstance(success_states, list) or not success_states
+            or any(type(v) is not str or not v for v in success_states)):
+        raise ValueError("Expected nonempty trusted success state IDs")
     terminal = ("success", "failure", "timeout", "unsafe")
     reward = config["terminal_reward"]
     if set(reward) != set(terminal):
@@ -49,6 +54,8 @@ def analyze(doc):
             if (outcome not in (*terminal, "continue") or (outcome == "continue") != (index < len(steps) - 1)
                 or (action not in actions) != (outcome == "unsafe")):
                 raise ValueError(f"Invalid action or terminal transition in {key}")
+            if success_states and (outcome == "success") != (new in success_states):
+                raise ValueError(f"Terminal success and trusted state disagree in {key}")
             cost = finite(step["cost"])
             costs.append(cost)
             rewards.append(finite(reward.get(outcome, 0) - cost_weight * cost, -float("inf")))

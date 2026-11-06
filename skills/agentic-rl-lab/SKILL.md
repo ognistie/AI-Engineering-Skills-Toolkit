@@ -3,7 +3,7 @@ name: agentic-rl-lab
 description: "Design a tool-use reinforcement-learning experiment with isolated transitions, explicit rewards, credit assignment and evaluation. Use for policy training protocols or offline rollouts; no training is required."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Agentic RL Lab

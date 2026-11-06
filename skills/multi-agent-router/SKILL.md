@@ -3,7 +3,7 @@ name: multi-agent-router
 description: "Choose whether and how to delegate independent agent work with dependency, ownership, latency and cost constraints. Use for agent topology and task decomposition; do not delegate a simple linear task."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Multi Agent Router

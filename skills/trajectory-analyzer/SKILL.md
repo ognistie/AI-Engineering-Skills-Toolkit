@@ -3,7 +3,7 @@ name: trajectory-analyzer
 description: "Analyze AI agent traces or logs to reconstruct tool calls, failures, retries, and latency. Use for debugging a recorded execution or designing a counterfactual; do not use for internal neural activations."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Trajectory Analyzer

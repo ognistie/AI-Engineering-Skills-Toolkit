@@ -3,6 +3,7 @@ import argparse
 from contextlib import closing
 import json
 from pathlib import Path
+import re
 import sqlite3
 
 
@@ -14,6 +15,9 @@ def validate_plan(plan):
     steps = plan["steps"]
     if type(plan["run_id"]) is not str or not plan["run_id"].strip():
         raise ValueError("Expected run_id")
+    if "scope_sha256" in plan and (type(plan["scope_sha256"]) is not str
+                                   or not re.fullmatch(r"[0-9a-f]{64}", plan["scope_sha256"])):
+        raise ValueError("Invalid scope SHA-256")
     if not isinstance(steps, list) or not 1 <= len(steps) <= 256:
         raise ValueError("Expected 1 to 256 steps")
     ids = set()
@@ -25,6 +29,8 @@ def validate_plan(plan):
 
 
 def apply(plan, state, event):
+    if "scope_sha256" in plan and plan["scope_sha256"] != event.get("scope_sha256"):
+        raise ValueError("Event scope differs from the frozen plan")
     index, count = state["index"], state["attempts"]
     if index == len(plan["steps"]):
         raise ValueError("Run already complete")
@@ -41,18 +47,21 @@ def apply(plan, state, event):
             raise ValueError("Use the same idempotency key on a retry")
         if operation in state["completed_operations"]:
             raise ValueError("Operation key already completed in this run")
-        return state | {"phase": "in_flight", "operation": operation, "attempts": count + 1}
+        return state | {"phase": "in_flight", "operation": operation, "attempts": count + 1,
+                        "active_claim_id": event["id"]}
     if state["phase"] != "in_flight" or state["operation"] != operation:
         raise ValueError("Observation must match an in-flight operation")
+    if event.get("claim_id") != state["active_claim_id"]:
+        raise ValueError("Observation must reference the active claim ID")
     evidence = event["evidence"]
     if type(evidence) is not str or not evidence.strip():
         raise ValueError("Independent evidence reference required")
     if kind == "verified":
         return state | {"index": index + 1, "phase": "done" if index + 1 == len(plan["steps"]) else "ready",
-                        "attempts": 0, "operation": None, "last_evidence": evidence,
+                        "attempts": 0, "operation": None, "active_claim_id": None, "last_evidence": evidence,
                         "completed_operations": state["completed_operations"] + [operation]}
     return state | {"phase": "ready" if kind == "no_effect" and count < step["max_attempts"] else "blocked",
-                    "last_evidence": evidence}
+                    "active_claim_id": None, "last_evidence": evidence}
 
 
 def transact(path, command, data=None):
@@ -68,7 +77,7 @@ def transact(path, command, data=None):
                 plan = db.execute("SELECT plan FROM run WHERE id=1").fetchone()
                 if plan is None:
                     state = {"index": 0, "attempts": 0, "phase": "ready", "operation": None,
-                             "last_evidence": None, "completed_operations": []}
+                             "active_claim_id": None, "last_evidence": None, "completed_operations": []}
                     db.execute("INSERT INTO run VALUES (1, ?, ?)", (encoded(data), encoded(state)))
                 elif plan[0] != encoded(data):
                     raise ValueError("Cannot replace the initialized plan")
@@ -76,6 +85,12 @@ def transact(path, command, data=None):
             if row is None:
                 raise ValueError("Checkpoint is not initialized")
             plan, state = map(json.loads, row)
+            if state["phase"] == "in_flight" and "active_claim_id" not in state:
+                # In legacy journals, the last accepted event is the current claim.
+                last = db.execute("SELECT id, event FROM events ORDER BY rowid DESC LIMIT 1").fetchone()
+                if last is None or json.loads(last[1])["kind"] != "claim":
+                    raise ValueError("Cannot recover the active claim from this journal")
+                state["active_claim_id"] = last[0]
             duplicate = False
             if command == "record":
                 key = data["id"]

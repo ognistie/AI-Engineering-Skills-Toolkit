@@ -1,11 +1,13 @@
 import copy
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +73,26 @@ class RouterTests(unittest.TestCase):
             router.route({"budget": True}, catalog)
 
 
+class RoutingScoreTests(unittest.TestCase):
+    def test_restriction_score_checks_nested_tools_and_reports_coverage(self):
+        scorer = load(ROOT / "evals/score_routing.py")
+        cases = json.loads((ROOT / "evals/routing/cases.json").read_text(encoding="utf-8"))
+        rows = {case["id"]: router.route(case["classification"], catalog) for case in cases}
+        valid = scorer.score(cases, rows, 3)
+        self.assertEqual(valid["restriction_check_case_rate"], 1)
+        self.assertGreater(valid["restriction_check_cases"], 0)
+        self.assertLess(valid["restriction_check_cases"], len(cases))
+
+        selected = rows["route-40"]["selected"][0]
+        for tools in (["network"], ["subagents"], None):
+            with self.subTest(tools=tools):
+                selected["optional_tools_available"] = tools
+                report = scorer.score(cases, rows, 3)
+                self.assertEqual(report["exact_order_case_rate"], 1)
+                checked = valid["restriction_check_cases"]
+                self.assertAlmostEqual(report["restriction_check_case_rate"], (checked - 1) / checked)
+
+
 class OutcomeTests(unittest.TestCase):
     def test_verifier_rejects_self_claims_wrong_state_and_type(self):
         contract = {"run_id": "run", "gates": [{"key": "refunds", "source": "ledger", "equals": 1}]}
@@ -82,6 +104,26 @@ class OutcomeTests(unittest.TestCase):
             self.assertEqual(verifier.verify(contract, evidence)["status"], expected)
         evidence["observations"].append(row | {"id": "c"})
         self.assertEqual(verifier.verify(contract, evidence)["gates"][0]["status"], "disputed")
+
+    def test_verifier_cli_rejects_duplicate_keys_in_either_input(self):
+        contract = '{"run_id":"run","gates":[{"key":"refunds","source":"ledger","equals":1}]}'
+        evidence = '{"run_id":"run","observations":[{"id":"e1","key":"refunds","source":"ledger","value":1}]}'
+        with tempfile.TemporaryDirectory() as temp:
+            paths = [Path(temp) / name for name in ("contract.json", "evidence.json")]
+            for contract_text, evidence_text, expected in (
+                (contract, evidence, 0),
+                (contract.replace('"equals":1', '"equals":0,"equals":1'), evidence, 2),
+                (contract, evidence.replace('"value":1', '"value":0,"value":1'), 2),
+            ):
+                with self.subTest(contract=contract_text, evidence=evidence_text):
+                    for path, contents in zip(paths, (contract_text, evidence_text)):
+                        path.write_text(contents, encoding="utf-8")
+                    result = subprocess.run([sys.executable, verifier.__file__, *map(str, paths)],
+                                            capture_output=True, text=True, timeout=15)
+                    self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
+                    if expected == 2:
+                        self.assertIn("Duplicate JSON key", result.stderr)
+                        self.assertEqual(result.stdout, "")
 
     def test_trace_overlap_and_partial_trace(self):
         rows = [{"id":"p","start_ms":0,"end_ms":100,"status":"ok"},
@@ -122,6 +164,55 @@ class InstallerTests(unittest.TestCase):
         self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
         return result.stdout
 
+    def test_filesystem_retry_only_handles_bounded_windows_lock_errors(self):
+        manager = load(ROOT / "scripts/manage.py")
+        transient = PermissionError("simulated Windows sharing lock")
+        transient.winerror = 32
+        attempts = []
+
+        def move():
+            attempts.append(True)
+            if len(attempts) < 3:
+                raise transient
+            return "moved"
+
+        with patch.object(manager, "sleep") as delay:
+            self.assertEqual(manager.retry_windows_fs(move), "moved")
+            self.assertEqual(delay.call_count, 2)
+        collision = FileExistsError("destination exists")
+        collision.winerror = 183
+        with patch.object(manager, "sleep") as delay, self.assertRaises(FileExistsError):
+            def collide():
+                raise collision
+            manager.retry_windows_fs(collide)
+        delay.assert_not_called()
+
+    def test_partial_catalog_install_can_resume_after_persistent_windows_lock(self):
+        manager = load(ROOT / "scripts/manage.py")
+        with tempfile.TemporaryDirectory() as temp:
+            destination = Path(temp).resolve() / "skills"
+            old_rename = Path.rename
+            locked = PermissionError("simulated Windows access denied")
+            locked.winerror = 5
+            attempts = []
+
+            def fail_second(source, target):
+                if source.name == "new" and target == destination / R:
+                    attempts.append(target)
+                    raise locked
+                return old_rename(source, target)
+
+            with patch.object(Path, "rename", fail_second), patch.object(manager, "sleep"):
+                with self.assertRaises(PermissionError):
+                    manager.operate("install", destination, [T, R], ROOT / "skills")
+            self.assertEqual(len(attempts), len(manager.RETRY_DELAYS) + 1)
+            self.assertEqual({path.name for path in destination.iterdir()}, {T})
+            receipt = destination.parent / ".skills.aaes-state" / "records" / (T + ".json")
+            original = receipt.stat().st_mtime_ns
+            manager.operate("install", destination, [T, R], ROOT / "skills")
+            manager.operate("verify", destination, [T, R], ROOT / "skills")
+            self.assertEqual(receipt.stat().st_mtime_ns, original)
+
     def test_install_verify_update_and_recoverable_removal(self):
         with tempfile.TemporaryDirectory() as temp:
             dest = Path(temp).resolve() / "skills"
@@ -151,6 +242,32 @@ class InstallerTests(unittest.TestCase):
             for command in ("update", "remove", "verify"):
                 self.cli(command, *options, expected=2)
             self.assertEqual((dest / R / "SKILL.md").read_text(encoding="utf-8"), "local")
+
+    def test_runtime_import_allows_cache_but_protects_distributed_files(self):
+        with tempfile.TemporaryDirectory() as temp:
+            dest = Path(temp).resolve() / "skills"
+            options = ("--destination", dest, "--skill", "runtime-guardian")
+            self.cli("install", *options)
+            scripts = dest / "runtime-guardian" / "scripts"
+            env = {key: value for key, value in os.environ.items()
+                   if key not in {"PYTHONDONTWRITEBYTECODE", "PYTHONPYCACHEPREFIX"}}
+            result = subprocess.run([sys.executable, "-c", "import reservations"], cwd=scripts,
+                                    env=env, capture_output=True, text=True, timeout=15)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertTrue(list((scripts / "__pycache__").glob("policy.*.pyc")))
+            self.cli("verify", *options)
+
+            source = scripts / "policy.py"
+            original = source.read_bytes()
+            source.write_bytes(original + b"\n# local edit\n")
+            for command in ("verify", "update", "remove"):
+                self.cli(command, *options, expected=2)
+            source.write_bytes(original)
+
+            self.cli("update", *options)
+            self.cli("verify", *options)
+            self.cli("remove", *options)
+            self.assertFalse(scripts.exists())
 
     def test_export_self_contained_no_overwrite(self):
         with tempfile.TemporaryDirectory() as temp:

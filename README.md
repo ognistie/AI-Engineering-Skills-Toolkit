@@ -1,51 +1,40 @@
-# Advanced AI Engineering Skills (AAES)
+# Advanced AI Engineering Skills
 
-Catálogo independente de **13 Agent Skills** para desenvolver, investigar e avaliar sistemas de IA. Versão 0.1.0. O pacote funciona offline para planejamento, análise de artefatos e verificações locais.
+**AAES** is a portable catalog of 13 [Agent Skills](https://agentskills.io/specification) for agent design, evaluation, research, and operational safety. It pairs task procedures with reproducible local checks. The helpers use the Python standard library and require no model API, GPU, or service account.
 
-| Grupo | Skill | Entrega |
+## Install
+
+Clone the repository or [download the ZIP](https://github.com/ognistie/AI-Engineering-Skills-Toolkit/archive/refs/heads/main.zip). Open the extracted repository with Python 3.12+ installed.
+
+```sh
+git clone https://github.com/ognistie/AI-Engineering-Skills-Toolkit.git
+cd AI-Engineering-Skills-Toolkit
+```
+
+| Host | Windows PowerShell | macOS / Linux |
 | --- | --- | --- |
-| Roteamento | `skill-orchestrator` | Composição mínima por objetivo, risco e custo, com abstenção. |
-| Essenciais | `research-orchestrator` | Síntese de evidências primárias ou plano offline. |
-| Essenciais | `process-verifier` | Gates de aceitação conferidos por evidência independente. |
-| Essenciais | `trajectory-analyzer` | Cronologia, operações repetidas e latência de traces. |
-| Essenciais | `experiment-evaluator` | Comparação pareada com orçamento e critérios congelados. |
-| Autonomia | `adaptive-reasoning` | Decide entre tentativa direta, verificação, escalada e parada. |
-| Autonomia | `long-horizon-executor` | Checkpoints locais, idempotência e reconciliação de interrupções. |
-| Autonomia | `multi-agent-router` | Batches que respeitam dependências, conflitos e autoridade. |
-| Autonomia | `runtime-guardian` | Política de ação e reserva atômica em um executor confiável. |
-| Pesquisa | `evolutionary-optimizer` | Arquivo de variantes viáveis no Pareto, sem contaminar o holdout. |
-| Pesquisa | `hypothesis-lab` | Hipóteses falsificáveis e matriz de evidências independentes. |
-| Pesquisa | `mechanistic-interpretability` | Protocolo de intervenções neurais e medidas pareadas de patching. |
-| Pesquisa | `agentic-rl-lab` | Contrato de ambiente, validação de rollouts e retornos descontados. |
+| Codex | `.\scripts\install.ps1 -Target codex` | `sh scripts/install.sh codex` |
+| Claude Code | `.\scripts\install.ps1 -Target claude` | `sh scripts/install.sh claude` |
 
-## Instalação local
+Add `-Skill process-verifier` in PowerShell or append `process-verifier` in shell to install only that skill. Start a new session and invoke `$process-verifier` in Codex or `/process-verifier` in Claude Code.
 
-Requer Python 3.12+. Instalador e helpers usam apenas a biblioteca padrão. Para os wrappers, defina `AAES_PYTHON` com o caminho completo se o alias `python` não resolver.
+**Ask your agent:**
 
-```text
-python scripts/manage.py list
-python scripts/manage.py install --target codex
-python scripts/manage.py install --target claude --group essential
-python scripts/manage.py install --target codex --skill skill-orchestrator
-python scripts/manage.py verify --target codex
-python scripts/manage.py update --target codex --skill process-verifier
-python scripts/manage.py remove --target codex --skill trajectory-analyzer
-python scripts/manage.py export
-```
+> Install the `process-verifier` skill from https://github.com/ognistie/AI-Engineering-Skills-Toolkit for this host. Follow INSTALL.md, preserve existing skills, and report the destination and how to invoke it.
 
-Sem seleção, o comando opera no catálogo inteiro. Repita `--skill` para selecionar várias skills. Grupos: `routing`, `essential`, `autonomy`, `advanced`. Use `--destination` para um caminho de descoberta específico ou um destino isolado. O padrão Codex é `~/.agents/skills`; perfis que usam `~/.codex/skills` podem indicar esse caminho explicitamente. O padrão Claude Code é `~/.claude/skills` (ou `CLAUDE_CONFIG_DIR/skills`). PowerShell: `./scripts/manage.ps1`. Bash/POSIX: `sh scripts/manage.sh`.
+Use “all 13 skills” to install the full catalog. See [installation and update procedures](INSTALL.md).
 
-No Codex, experimente `$skill-orchestrator Só recomende skills para investigar este trace`. No Claude Code, use `/skill-orchestrator`. A instalação individual do orquestrador inclui o catálogo; para despacho, o host precisa disponibilizar a skill recomendada. Para outros agentes, use as pastas ou os ZIPs exportados.
+For hosts that import skill archives, download an individual package from [dist/](dist/).
 
-## Validação e limites
+## Research areas
 
-```text
-python -m pip install -r requirements-dev.txt
-python scripts/validate.py
-python evals/score_routing.py
-python -m unittest discover -s tests -v
-```
+| Area | Skills |
+| --- | --- |
+| Routing | [Skill orchestrator](skills/skill-orchestrator/) |
+| Evidence and evaluation | [Research](skills/research-orchestrator/), [verification](skills/process-verifier/), [traces](skills/trajectory-analyzer/), [experiments](skills/experiment-evaluator/) |
+| Agent execution | [Adaptive reasoning](skills/adaptive-reasoning/), [checkpoints](skills/long-horizon-executor/), [delegation](skills/multi-agent-router/), [runtime policy](skills/runtime-guardian/) |
+| Experimental methods | [Evolutionary search](skills/evolutionary-optimizer/), [hypotheses](skills/hypothesis-lab/), [interpretability](skills/mechanistic-interpretability/), [agentic RL](skills/agentic-rl-lab/) |
 
-[Arquitetura](docs/ARCHITECTURE.md) · [Compatibilidade](docs/COMPATIBILITY.md) · [Segurança](docs/SECURITY.md) · [Relatório](evals/reports/release.md) · [Melhorias](docs/REVIEW.md)
+[Architecture](docs/ARCHITECTURE.md) · [Audit and reproduction](docs/audits/FINAL_ENGINEERING_REPORT.md) · [Security model](docs/SECURITY.md)
 
-A instalação não exige APIs, pesos, GPU, banco externo ou um framework de agentes. Patching real, treinamento e ações externas dependem de ferramentas, isolamento e permissões do host. Uma skill ou decisão de preflight não é barreira de segurança. O piloto comportamental não estabelece ganho geral de eficácia. Nenhum código do AIWorkbench foi copiado; nenhuma licença de redistribuição foi declarada.
+Local validation covers format, deterministic behavior and installation. Host activation, model efficacy, and production enforcement require separate evidence.

@@ -20,8 +20,8 @@ def analyze(doc):
         raise ValueError("Do not use holdout measurements for archive selection")
     seeds = unique(doc["seeds"])
     goals, variants = doc["objectives"], doc["variants"]
-    if not isinstance(goals, dict) or not goals or not isinstance(variants, list):
-        raise ValueError("Expected objectives and a variant list")
+    if not isinstance(goals, dict) or not 1 <= len(goals) <= 16 or not isinstance(variants, list) or len(variants) > 512:
+        raise ValueError("Expected 1–16 objectives and at most 512 variants")
     unique([v["id"] for v in variants])
     for goal in goals.values():
         if goal["direction"] not in ("min", "max"):

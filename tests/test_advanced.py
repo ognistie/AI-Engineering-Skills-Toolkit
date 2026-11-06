@@ -1,6 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
 import copy
 import json
+import sqlite3
 from pathlib import Path
 import subprocess
 import sys
@@ -43,23 +45,51 @@ class AdvancedChecks(unittest.TestCase):
             transact(db, "init", plan)
             claim = {"id":"c1","step":"payment","kind":"claim","operation":"p42"}
             transact(db, "record", claim)
-            self.assertEqual(transact(db, "status")["next"], "reconcile")
+            status = transact(db, "status")
+            self.assertEqual(status["next"], "reconcile")
+            self.assertEqual(status["state"]["active_claim_id"], "c1")
             self.assertTrue(transact(db, "record", claim)["duplicate_event"])
             with self.assertRaises(ValueError):
                 transact(db, "record", claim | {"id":"unsafe-retry"})
             with self.assertRaises(ValueError):
                 transact(db, "record", claim | {"operation":"forged"})
             self.assertEqual(transact(db, "status")["state"]["attempts"], 1)
-            proof = claim | {"id":"o1","kind":"no_effect","evidence":"provider:p42-terminal-no-effect"}
+            proof = claim | {"id":"o1","kind":"no_effect","claim_id":"c1",
+                             "evidence":"provider:p42-terminal-no-effect"}
             self.assertEqual(transact(db, "record", proof)["next"], "claim")
             with self.assertRaises(ValueError):
                 transact(db, "record", claim | {"id":"c2","operation":"other"})
             transact(db, "record", claim | {"id":"c2"})
-            complete = proof | {"id":"o2","kind":"verified","evidence":"provider:receipt/1"}
+            self.assertTrue(transact(db, "record", proof)["duplicate_event"])
+            with self.assertRaisesRegex(ValueError, "active claim"):
+                transact(db, "record", proof | {"id":"delayed-o1"})
+            with self.assertRaisesRegex(ValueError, "active claim"):
+                transact(db, "record", {key: value for key, value in proof.items() if key != "claim_id"}
+                         | {"id":"missing-claim"})
+            self.assertEqual(transact(db, "status")["next"], "reconcile")
+            self.assertEqual(transact(db, "status")["state"]["active_claim_id"], "c2")
+            complete = proof | {"id":"o2","kind":"verified","claim_id":"c2","evidence":"provider:receipt/1"}
             self.assertEqual(transact(db, "record", complete)["step"], "receipt")
             transact(db, "record", claim | {"id":"c3","step":"receipt","operation":"r1"})
             self.assertEqual(transact(db, "record", complete | {"id":"o3","step":"receipt",
-                             "operation":"r1"})["next"], "stop")
+                             "operation":"r1","claim_id":"c3"})["next"], "stop")
+
+    def test_checkpoint_recovers_active_claim_from_a_legacy_journal(self):
+        transact = helper("long-horizon-executor", "checkpoint.py").transact
+        with tempfile.TemporaryDirectory() as temp:
+            db = Path(temp) / "legacy.db"
+            plan = fixture("long-horizon-executor")
+            transact(db, "init", plan)
+            claim = {"id":"legacy-claim","step":"payment","kind":"claim","operation":"p42"}
+            state = transact(db, "record", claim)["state"]
+            del state["active_claim_id"]
+            with closing(sqlite3.connect(db)) as connection, connection:
+                connection.execute("UPDATE run SET state=?", (json.dumps(state),))
+
+            self.assertEqual(transact(db, "status")["state"]["active_claim_id"], "legacy-claim")
+            observed = claim | {"id":"legacy-result","kind":"verified","claim_id":"legacy-claim",
+                                "evidence":"provider:receipt/legacy"}
+            self.assertEqual(transact(db, "record", observed)["step"], "receipt")
 
     def test_topology_respects_conflicts_cost_and_permission(self):
         name = "multi-agent-router"

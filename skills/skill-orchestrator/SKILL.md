@@ -3,7 +3,7 @@ name: skill-orchestrator
 description: "Recommend and compose advanced AI engineering skills for a task. Use when asked to choose skills, route an AI engineering workflow, or explain why no specialized skill is needed."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Skill Orchestrator

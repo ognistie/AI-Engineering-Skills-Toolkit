@@ -8,12 +8,25 @@ from pathlib import Path
 import re
 import shutil
 import sys
+from time import sleep
 from uuid import uuid4
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "skills/skill-orchestrator/references/catalog.json"
 NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
+RETRY_DELAYS = (0.05, 0.10, 0.20, 0.40, 0.80)
+
+
+def retry_windows_fs(operation, *args):
+    """Let transient Windows locks clear; never retry a destination collision."""
+    for attempt in range(len(RETRY_DELAYS) + 1):
+        try:
+            return operation(*args)
+        except OSError as exc:
+            if getattr(exc, "winerror", None) not in (5, 32, 33) or attempt == len(RETRY_DELAYS):
+                raise
+            sleep(RETRY_DELAYS[attempt])
 
 
 def catalog():
@@ -27,7 +40,7 @@ def safe_path(path):
     return path
 
 
-def tree_files(folder, source=False):
+def tree_files(folder):
     safe_path(folder)
     if not folder.is_dir():
         raise ValueError(f"Missing skill folder: {folder}")
@@ -36,12 +49,12 @@ def tree_files(folder, source=False):
         base = Path(directory)
         for name in dirs + files:
             safe_path(base / name)
-        if source:
-            dirs[:] = [name for name in dirs if name != "__pycache__"]
         for name in files:
             path = base / name
             if not path.is_file():
                 raise ValueError(f"Not a regular file: {path}")
+            if base.name == "__pycache__" and path.suffix == ".pyc":
+                continue
             result[path.relative_to(folder).as_posix()] = path
     if "SKILL.md" not in result:
         raise ValueError(f"No SKILL.md in {folder}")
@@ -56,9 +69,10 @@ def write_manifest(path, data):
     temporary = path.with_name(uuid4().hex + ".json")
     try:
         temporary.write_text(json.dumps(data, sort_keys=True) + "\n", encoding="utf-8")
-        temporary.replace(path)
+        retry_windows_fs(temporary.replace, path)
     finally:
-        temporary.unlink(missing_ok=True)
+        if temporary.exists():
+            retry_windows_fs(temporary.unlink)
 
 
 def live_path(path):
@@ -91,7 +105,7 @@ def operate(command, dest, names, sources):
     state = safe_path(dest.parent / f".{dest.name}.aaes-state")
     records = safe_path(state / "records")
     backup_root = safe_path(state / "backups")
-    sources = {name: tree_files(sources / name, source=True) for name in names if command != "remove"}
+    sources = {name: tree_files(sources / name) for name in names if command != "remove"}
     if command == "verify":
         for name in names:
             receipt = safe_path(records / (name + ".json"))
@@ -110,12 +124,19 @@ def operate(command, dest, names, sources):
         for name in names:
             target, receipt = safe_path(dest / name), safe_path(records / (name + ".json"))
             exists, managed = live_path(target), live_path(receipt)
-            if exists != managed or (command == "install" and exists):
+            if exists != managed:
                 raise ValueError(f"{name}: existing or inconsistent installation; no files overwritten")
             if command != "install" and not managed:
                 raise ValueError(f"{name}: skill not installed by AAES")
-            if managed and fingerprint(tree_files(target)) != json.loads(receipt.read_text(encoding="utf-8")):
-                raise ValueError(f"{name}: local modifications; preserve or reconcile them before continuing")
+            if managed:
+                recorded = json.loads(receipt.read_text(encoding="utf-8"))
+                if fingerprint(tree_files(target)) != recorded:
+                    raise ValueError(f"{name}: local modifications; preserve or reconcile them before continuing")
+                if command == "install":
+                    if fingerprint(sources[name]) != recorded:
+                        raise ValueError(f"{name}: a different managed version is installed; use update")
+                    print(f"already installed {name}")
+                    continue
             plan.append((name, target, receipt, managed))
 
         # Commit each skill independently. Multi-skill operations preflight all
@@ -138,24 +159,24 @@ def operate(command, dest, names, sources):
                     if snapshot != fingerprint(sources[name]):
                         raise ValueError(f"{name}: package changed during copy")
                 if backup:
-                    target.rename(backup)
+                    retry_windows_fs(target.rename, backup)
                     moved_old = True
                 if command == "remove":
-                    receipt.unlink()
+                    retry_windows_fs(receipt.unlink)
                 else:
-                    staged.rename(target)
+                    retry_windows_fs(staged.rename, target)
                     moved_new = True
                     write_manifest(receipt, snapshot)
             except Exception:
                 if moved_new:
-                    target.rename(staged)
+                    retry_windows_fs(target.rename, staged)
                 if moved_old:
-                    backup.rename(target)
+                    retry_windows_fs(backup.rename, target)
                     if not receipt.exists():
                         receipt.write_bytes(previous_receipt)
                 raise
             finally:
-                shutil.rmtree(work)
+                retry_windows_fs(shutil.rmtree, work)
             print(f"{command} {name}" + (f" | backup: {backup}" if backup else ""))
 
 
@@ -177,14 +198,20 @@ def export(dest, names):
     if any(live_path(path) for path in archives):
         raise ValueError("Export would overwrite an existing archive")
     for name, archive in zip(names, archives):
-        files = tree_files(ROOT / "skills" / name, source=True)
+        files = tree_files(ROOT / "skills" / name)
         with ZipFile(archive, "x", ZIP_DEFLATED) as out:
             for rel, path in files.items():
-                out.write(path, name + "/" + rel)
+                entry = ZipInfo(name + "/" + rel)
+                entry.create_system = 3
+                entry.external_attr = 0o100644 << 16
+                out.writestr(entry, path.read_bytes(), compress_type=ZIP_DEFLATED)
         print(f"export {archive}")
 
 
 def main():
+    if sys.version_info < (3, 12):
+        print("AAES: Python 3.12+ is required; set AAES_PYTHON to its executable.", file=sys.stderr)
+        return 2
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["list", "install", "update", "verify", "remove", "export"])
     parser.add_argument("--target", choices=["codex", "claude", "generic"], default="generic")
@@ -200,7 +227,7 @@ def main():
             for name in names:
                 print(f"{name}\t{data[name]['group']}\t{data[name]['outcome']}")
         elif args.command == "export":
-            export(args.destination or ROOT / "dist", names)
+            export(args.destination or ROOT / "dist" / "generated", names)
         else:
             dest = args.destination or default_path(args.target)
             # Prevent modifying the distribution from which this command runs.

@@ -70,6 +70,18 @@ def analyze(doc):
     estimated = (sum(max(duration[k] for k in b) for b in parallel) + overhead
                  if overhead is not None else None)
     can_parallel = doc["host_parallel"] and doc["delegation_authorized"]
+    budget_fields = {"max_cost_units", "parallel_overhead_cost_units"}
+    costs = {}
+    if budget_fields & doc.keys() or any("cost_units" in task for task in tasks):
+        cap = integer(doc["max_cost_units"])
+        serial_cost = sum(integer(task["cost_units"]) for task in tasks)
+        parallel_cost = serial_cost + integer(doc["parallel_overhead_cost_units"])
+        costs = {"serial_cost_units": serial_cost, "parallel_cost_units": parallel_cost, "max_cost_units": cap}
+        if serial_cost > cap:
+            return {"topology": "infeasible", "batches": [], "serial_ms": serial,
+                    "estimated_parallel_ms": estimated, "estimated_saving_ms": None,
+                    "reason": "sequential_cost_exceeds_budget", "dispatch": "not_dispatched"} | costs
+        can_parallel &= parallel_cost <= cap
     use = (can_parallel and any(len(b) > 1 for b in parallel)
            and estimated is not None and serial - estimated >= gain)
     return {"topology": "parallel_batches" if use else "sequential",
@@ -77,7 +89,7 @@ def analyze(doc):
             "serial_ms": serial, "estimated_parallel_ms": estimated,
             "estimated_saving_ms": serial - estimated if estimated is not None else None,
             "reason": "estimated_gain" if use else "constraints_or_unproven_gain",
-            "dispatch": "not_dispatched"}
+            "dispatch": "not_dispatched"} | costs
 
 def _pairs(items):
     result = {}

@@ -1,0 +1,15 @@
+{
+  "sources": [
+    {"id":"s1","locator":"fixture/warm#trial-3","group":"dataset-warm"},
+    {"id":"s2","locator":"fixture/review#appendix","group":"dataset-warm"},
+    {"id":"s3","locator":"fixture/cold#trial-7","group":"dataset-cold"}
+  ],
+  "claims": [
+    {"id":"c1","statement":"Pooled timings favor pipeline A","evidence":[
+      {"source":"s1","stance":"supports"},
+      {"source":"s2","stance":"supports"},
+      {"source":"s3","stance":"contradicts"}
+    ]},
+    {"id":"c2","statement":"The effect persists after matching cache conditions","evidence":[]}
+  ]
+}

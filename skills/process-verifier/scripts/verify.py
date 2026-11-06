@@ -46,14 +46,36 @@ def canonical(value):
     return json.dumps(value, sort_keys=True, allow_nan=False, separators=(",", ":"))
 
 
+def read_json(path):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError(f"Duplicate JSON key: {key}")
+            result[key] = value
+        return result
+
+    def real(token):
+        value = float(token)
+        if not -float("inf") < value < float("inf"):
+            raise ValueError("Non-finite JSON number")
+        return value
+
+    with path.open("rb") as stream:
+        data = stream.read(2_000_001)
+    if len(data) > 2_000_000:
+        raise ValueError("JSON input exceeds 2 MB")
+    return json.loads(data, object_pairs_hook=pairs, parse_float=real, parse_constant=real)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("contract", type=Path)
     parser.add_argument("evidence", type=Path)
     args = parser.parse_args()
     try:
-        result = verify(*(json.loads(path.read_text(encoding="utf-8")) for path in (args.contract, args.evidence)))
-    except (ValueError, TypeError, KeyError, OSError) as exc:
+        result = verify(*(read_json(path) for path in (args.contract, args.evidence)))
+    except (ValueError, TypeError, KeyError, OSError, RecursionError) as exc:
         parser.exit(2, f"Invalid verification input: {exc}\n")
     print(json.dumps(result, indent=2))
     raise SystemExit(0 if result["status"] == "passed" else 1)

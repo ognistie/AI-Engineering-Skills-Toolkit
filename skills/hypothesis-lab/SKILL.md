@@ -3,7 +3,7 @@ name: hypothesis-lab
 description: "Develop competing technical hypotheses with falsifiable predictions and independent evidence. Use for discriminating experiments or uncertainty after an incident; use source synthesis for literature-only requests."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Hypothesis Lab

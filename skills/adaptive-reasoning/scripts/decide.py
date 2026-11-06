@@ -5,10 +5,16 @@ def analyze(doc):
     evidence = doc["evidence"]
     if evidence not in ("not_started", "uncertain", "disagreement", "verified", "stalled", "blocked"):
         raise ValueError("Unknown evidence state")
+    next_kind = doc.get("next_kind", "verify" if evidence == "disagreement" else "attempt")
+    if next_kind not in ("attempt", "verify"):
+        raise ValueError("next_kind must be attempt or verify")
     remaining = {}
+    reserve = doc.get("verification_reserve", {})
+    if not isinstance(reserve, dict) or reserve.keys() - {"attempts", "ms", "cost_units"}:
+        raise ValueError("Invalid verification reserve")
     for key in ("attempts", "ms", "cost_units"):
         cap, used, price = (doc[section][key] for section in ("limit", "spent", "next_cost"))
-        if any(type(v) is not int or v < 0 for v in (cap, used, price)):
+        if any(type(v) is not int or v < 0 for v in (cap, used, price, reserve.get(key, 0))):
             raise ValueError(f"{key}: expected nonnegative integers")
         remaining[key] = cap - used
     if doc["next_cost"]["attempts"] < 1:
@@ -27,12 +33,16 @@ def analyze(doc):
         decision, reason = "stop", "no_progress_or_authority"
     elif any(remaining[k] < doc["next_cost"][k] for k in remaining):
         decision, reason = "stop", "next_action_exceeds_budget"
+    elif next_kind != "verify" and any(
+            remaining[k] - doc["next_cost"][k] < reserve.get(k, 0) for k in remaining):
+        decision, reason = "stop", "verification_reserve_would_be_spent"
+    elif next_kind == "verify":
+        decision, reason = (("verify", "independent_check_needed") if action else
+                            ("stop", "no_discriminating_observation"))
     elif evidence == "not_started":
         decision, reason = "direct", "smallest_viable_attempt"
     elif not action:
         decision, reason = "stop", "no_discriminating_observation"
-    elif evidence == "disagreement":
-        decision, reason = "verify", "independent_check_needed"
     else:
         decision, reason = "escalate", "resolve_actionable_uncertainty"
     return {"decision": decision, "reason": reason, "remaining": remaining,

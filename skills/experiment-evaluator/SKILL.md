@@ -3,7 +3,7 @@ name: experiment-evaluator
 description: "Plan or analyze paired baseline versus candidate experiments for AI models, agents, or engineering workflows. Use for repeated trials, regression gates, held-out datasets, and quality, latency or cost comparisons."
 metadata:
   author: AAES
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Experiment Evaluator
@@ -16,7 +16,7 @@ Lock the task sample, assignment or pairing unit, seeds, budgets, graders, slice
 
 Keep held-out data and grader keys outside tuning. Calibrate graders with invalid, valid, and alternative-correct artifacts. If a judge sees model outputs, blind variant labels and inspect disagreements; keep human criteria separate from executable checks. Report numerator and denominator, effects per meaningful slice, and uncertainty at the task or cluster level rather than assuming repeated seeds are independent.
 
-The offline helper in [the comparison guide](references/TECHNICAL_GUIDE.md) computes paired descriptive metrics and fixed gates. Do not claim significance from its output. Stop at the frozen trial budget; declare incomplete data instead of silently dropping unpaired or timed-out trials.
+The offline helper in [the comparison guide](references/TECHNICAL_GUIDE.md) computes paired descriptive metrics, fixed gates and an optional task-cluster interval. Do not claim superiority from a small or unrepresentative sample. Stop at the frozen trial budget; declare incomplete data instead of silently dropping unpaired or timed-out trials.
 
 ## Deliverable
 
