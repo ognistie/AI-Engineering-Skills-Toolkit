@@ -1,3 +1,5 @@
+![AI Engineering Skills Toolkit banner](assets/aaes-banner.webp)
+
 # Advanced AI Engineering Skills
 
 AAES is a catalog of **28 portable [Agent Skills](https://agentskills.io/specification)** for designing, evaluating, and operating AI systems. Each skill gives a coding agent a procedure for a specific engineering task, plus examples and a technical reference. Many include a local Python helper that checks a contract or analyzes an artifact.
